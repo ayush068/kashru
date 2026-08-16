@@ -1,7 +1,571 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>About | Kashru Technologies</title><meta name="description" content="Kashru Technologies - professional digital solutions, software and technology services."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><header><nav>
-<a class="logo" href="index.html">Kashru <small>TECHNOLOGIES</small></a>
-<ul>
-<li><a href="index.html" class="active">Home</a></li><li><a href="services.html">Services</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li>
-</ul><a class="cta" href="contact.html">Get Started</a><button class="menu">☰</button></nav></header><section class="page-hero"><div class="container"><div class="kicker" style="color:#FFB62E">About Kashru</div><h1>Technology with a business purpose.</h1><p>We build practical digital solutions that help businesses operate better, serve customers faster and grow with confidence.</p></div></section><section class="section"><div class="split"><div class="visual">K</div><div><div class="kicker">Who we are</div><h2>We turn technology into business advantage.</h2><p class="lead">Kashru Technologies is focused on modern software and web solutions for businesses.</p><div class="list"><div><b>✓</b> Clean and scalable engineering</div><div><b>✓</b> Modern UI and user experience</div><div><b>✓</b> Secure cloud-ready architecture</div><div><b>✓</b> Long-term technical partnership</div></div></div></div></section><footer><div class="footer"><div><b>Kashru Technologies</b><div style="color:#718096;font-size:11px">Digital solutions for modern business.</div></div><div><a href="services.html">Services</a><a href="products.html">Products</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></div><p style="max-width:1240px;margin:25px auto 0;color:#718096;font-size:11px">© 2026 Kashru Technologies. All rights reserved.</p></footer><script>
-document.querySelector('.menu')?.addEventListener('click',()=>{const u=document.querySelector('nav ul');u.style.display=u.style.display==='flex'?'':'flex';u.style.position='absolute';u.style.top='74px';u.style.left='0';u.style.right='0';u.style.background='#fff';u.style.flexDirection='column';u.style.padding='18px';u.style.alignItems='center';});
-</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Ayush Nema | CEO & Founder | Kashru Technologies</title>
+    <meta name="description" content="Meet Ayush Nema, CEO & Founder of Kashru Technologies, and explore the technology projects developed by the team.">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .about-hero{
+            padding:135px 24px 70px;
+            background:linear-gradient(135deg,#071A33,#123F7A);
+            color:#fff;
+        }
+        .about-hero-inner{
+            max-width:1240px;
+            margin:auto;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            min-height:440px;
+            align-items:stretch;
+            overflow:hidden;
+            border-radius:24px;
+            background:#0a2346;
+            box-shadow:0 25px 70px rgba(0,0,0,.22);
+        }
+        .about-hero-copy{
+            padding:55px 50px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+        }
+        .about-hero-copy .kicker{color:#FFB62E}
+        .about-hero-copy h1{
+            color:#fff;
+            font-size:58px;
+            line-height:1.05;
+            margin:12px 0 8px;
+        }
+        .about-hero-copy h2{
+            color:#fff;
+            font-size:25px;
+            margin:0 0 22px;
+        }
+        .about-hero-copy p{
+            color:#C7D5E8;
+            font-size:15px;
+            max-width:550px;
+        }
+        .gold-line{
+            width:48px;
+            height:3px;
+            background:#F59E0B;
+            margin:0 0 20px;
+        }
+        .about-photo{
+            min-height:440px;
+            background:#163F73;
+            overflow:hidden;
+        }
+        .about-photo img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            object-position:center 25%;
+            display:block;
+        }
+
+        .stats-strip{
+            max-width:1080px;
+            margin:-35px auto 70px;
+            position:relative;
+            z-index:2;
+            background:linear-gradient(135deg,#0B3A82,#1559B7);
+            color:#fff;
+            border-radius:18px;
+            padding:24px 18px;
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            box-shadow:0 20px 45px rgba(7,26,51,.22);
+        }
+        .stat-box{
+            text-align:center;
+            padding:8px 16px;
+            border-right:1px solid rgba(255,255,255,.18);
+        }
+        .stat-box:last-child{border-right:0}
+        .stat-box strong{
+            display:block;
+            font-size:31px;
+            font-weight:800;
+            color:#FFB62E;
+        }
+        .stat-box span{font-size:12px;color:#E2EBF7}
+
+        .ceo-section{
+            max-width:1240px;
+            margin:auto;
+            padding:0 24px 90px;
+        }
+        .ceo-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:45px;
+            align-items:start;
+        }
+        .ceo-copy h2{
+            font-size:40px;
+            color:#071A33;
+            margin-bottom:10px;
+        }
+        .ceo-copy p{
+            color:#667085;
+            font-size:14px;
+            margin:0 0 15px;
+        }
+        .ceo-points{
+            display:grid;
+            gap:10px;
+            margin-top:22px;
+        }
+        .ceo-points div{
+            font-size:13px;
+            color:#344054;
+        }
+        .ceo-points b{
+            color:#16A34A;
+            margin-right:8px;
+        }
+        .ceo-card{
+            background:#fff;
+            border:1px solid #E4EAF2;
+            border-radius:18px;
+            padding:28px;
+            box-shadow:0 18px 50px rgba(10,35,70,.08);
+        }
+        .ceo-card h3{
+            font-size:26px;
+            margin-bottom:3px;
+        }
+        .ceo-role{
+            color:#F59E0B;
+            font-weight:800;
+            font-size:13px;
+            margin-bottom:22px;
+        }
+        .profile-row{
+            display:flex;
+            gap:12px;
+            padding:12px 0;
+            border-bottom:1px solid #EEF2F6;
+            font-size:13px;
+        }
+        .profile-row:last-child{border-bottom:0}
+        .profile-label{
+            min-width:120px;
+            font-weight:800;
+            color:#071A33;
+        }
+        .profile-value{color:#667085}
+
+        .mission{
+            margin-top:25px;
+            background:linear-gradient(135deg,#071A33,#123F7A);
+            color:#fff;
+            border-radius:14px;
+            padding:22px 25px;
+        }
+        .mission p{color:#D8E3F0!important;margin:0!important;font-size:14px!important}
+        .mission strong{color:#FFB62E}
+
+        .projects-section{
+            background:#F6F8FC;
+            padding:90px 24px;
+        }
+        .projects-inner{max-width:1240px;margin:auto}
+        .projects-head{margin-bottom:35px}
+        .projects-head h2{font-size:40px;color:#071A33;margin:7px 0}
+        .projects-head p{color:#667085;font-size:14px}
+        .project-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:18px;
+        }
+        .project-card{
+            background:#fff;
+            border:1px solid #E4EAF2;
+            border-radius:15px;
+            padding:23px;
+            transition:.25s ease;
+        }
+        .project-card:hover{
+            transform:translateY(-5px);
+            box-shadow:0 18px 45px rgba(10,35,70,.10);
+        }
+        .project-icon{
+            width:46px;
+            height:46px;
+            border-radius:12px;
+            display:grid;
+            place-items:center;
+            background:#EDF4FF;
+            color:#0B3A82;
+            font-size:22px;
+            margin-bottom:15px;
+        }
+        .project-card h3{
+            font-size:17px;
+            margin-bottom:7px;
+        }
+        .project-card p{
+            color:#667085;
+            font-size:12px;
+            line-height:1.7;
+            min-height:72px;
+        }
+        .tech-tags{
+            display:flex;
+            flex-wrap:wrap;
+            gap:6px;
+            margin-top:15px;
+        }
+        .tech-tag{
+            font-size:10px;
+            font-weight:700;
+            color:#0B3A82;
+            background:#EDF4FF;
+            border:1px solid #D7E6FB;
+            border-radius:20px;
+            padding:5px 8px;
+        }
+
+        .about-cta{
+            max-width:1120px;
+            margin:55px auto 0;
+            background:linear-gradient(135deg,#0B3A82,#1559B7);
+            color:#fff;
+            border-radius:18px;
+            padding:30px 38px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:25px;
+        }
+        .about-cta h3{color:#fff;font-size:25px;margin-bottom:5px}
+        .about-cta p{color:#D8E5F4;font-size:13px}
+        .about-cta a{
+            background:#F59E0B;
+            color:#172033;
+            padding:12px 20px;
+            border-radius:8px;
+            font-weight:800;
+            font-size:13px;
+            white-space:nowrap;
+        }
+
+        @media(max-width:900px){
+            .about-hero-inner,.ceo-grid{grid-template-columns:1fr}
+            .about-photo{min-height:400px}
+            .stats-strip{grid-template-columns:repeat(2,1fr);margin:-25px 24px 60px}
+            .stat-box:nth-child(2){border-right:0}
+            .stat-box{border-bottom:1px solid rgba(255,255,255,.18)}
+            .project-grid{grid-template-columns:1fr 1fr}
+        }
+        @media(max-width:600px){
+            .about-hero{padding:105px 18px 55px}
+            .about-hero-inner{border-radius:18px}
+            .about-hero-copy{padding:35px 25px}
+            .about-hero-copy h1{font-size:43px}
+            .about-hero-copy h2{font-size:21px}
+            .about-photo{min-height:380px}
+            .stats-strip{margin:-20px 18px 50px;padding:15px 8px}
+            .stat-box strong{font-size:25px}
+            .stat-box span{font-size:10px}
+            .ceo-section{padding:0 18px 65px}
+            .ceo-copy h2,.projects-head h2{font-size:32px}
+            .project-grid{grid-template-columns:1fr}
+            .about-cta{margin:40px 18px 0;padding:25px;flex-direction:column;align-items:flex-start}
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a class="logo" href="index.html">Kashru <small>TECHNOLOGIES</small></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a class="cta" href="contact.html">Let's Talk</a>
+        <button class="menu" id="menu">☰</button>
+    </nav>
+</header>
+
+<section class="about-hero">
+    <div class="about-hero-inner">
+        <div class="about-hero-copy">
+            <div class="kicker">Leadership</div>
+            <h1>Ayush Nema</h1>
+            <h2>CEO & Founder, Kashru Technologies</h2>
+            <div class="gold-line"></div>
+            <p>
+                Leading Kashru Technologies with a focus on building practical,
+                scalable and modern digital solutions that solve real business problems.
+            </p>
+        </div>
+        <div class="about-photo">
+            <img src="assets/ayush-nema.jpg" alt="Ayush Nema - CEO & Founder, Kashru Technologies">
+        </div>
+    </div>
+</section>
+
+<div class="stats-strip">
+    <div class="stat-box">
+        <strong>7+</strong>
+        <span>Years Experience</span>
+    </div>
+    <div class="stat-box">
+        <strong>10+</strong>
+        <span>Projects / Platforms</span>
+    </div>
+    <div class="stat-box">
+        <strong>Full Stack</strong>
+        <span>Technology Expertise</span>
+    </div>
+    <div class="stat-box">
+        <strong>100%</strong>
+        <span>Commitment to Quality</span>
+    </div>
+</div>
+
+<section class="ceo-section">
+    <div class="ceo-grid">
+
+        <div class="ceo-copy">
+            <div class="kicker">About Our CEO</div>
+            <h2>Building technology with purpose.</h2>
+
+            <p>
+                Ayush Nema is the CEO & Founder of Kashru Technologies and a
+                technology professional focused on software development,
+                digital products and business technology solutions.
+            </p>
+
+            <p>
+                His technical experience spans Java, Spring Boot, React,
+                databases, cloud technologies and full-stack application
+                development, with a strong focus on building practical
+                systems for real-world business requirements.
+            </p>
+
+            <p>
+                At Kashru Technologies, the focus is on combining clean
+                engineering, modern user experience and scalable architecture
+                to create software that businesses can actually depend on.
+            </p>
+
+            <div class="ceo-points">
+                <div><b>✓</b> Full-stack software development</div>
+                <div><b>✓</b> Enterprise application architecture</div>
+                <div><b>✓</b> React & Java/Spring Boot development</div>
+                <div><b>✓</b> Cloud and deployment solutions</div>
+                <div><b>✓</b> Product-focused problem solving</div>
+            </div>
+
+            <div class="mission">
+                <p>
+                    <strong>Vision:</strong>
+                    Build useful, reliable and scalable technology that helps
+                    businesses operate better and grow digitally.
+                </p>
+            </div>
+        </div>
+
+        <div class="ceo-card">
+            <h3>Ayush Nema</h3>
+            <div class="ceo-role">CEO & Founder — Kashru Technologies</div>
+
+            <div class="profile-row">
+                <div class="profile-label">Experience</div>
+                <div class="profile-value">7+ years in technology & software development</div>
+            </div>
+
+            <div class="profile-row">
+                <div class="profile-label">Specialization</div>
+                <div class="profile-value">Full Stack Development, Enterprise Applications, Cloud Solutions</div>
+            </div>
+
+            <div class="profile-row">
+                <div class="profile-label">Core Skills</div>
+                <div class="profile-value">Java, Spring Boot, React, Angular, Node.js, REST APIs, JPA/Hibernate, MySQL, SQL Server, Oracle, AWS</div>
+            </div>
+
+            <div class="profile-row">
+                <div class="profile-label">Architecture</div>
+                <div class="profile-value">Microservices, RESTful APIs, cloud deployment and scalable web applications</div>
+            </div>
+
+            <div class="profile-row">
+                <div class="profile-label">Focus</div>
+                <div class="profile-value">Innovation, quality, usability, automation and client success</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="projects-section">
+    <div class="projects-inner">
+
+        <div class="projects-head">
+            <div class="kicker">Our Work</div>
+            <h2>Projects & Platforms</h2>
+            <p>
+                Selected technology projects and platforms developed across
+                enterprise software, education, e-commerce, voice AI and business applications.
+            </p>
+        </div>
+
+        <div class="project-grid">
+
+            <article class="project-card">
+                <div class="project-icon">🎓</div>
+                <h3>University Management System</h3>
+                <p>
+                    Comprehensive college/university ERP covering admissions,
+                    students, faculty, courses, subjects, attendance,
+                    examinations, hall tickets, seating, timetable, library,
+                    LMS, online examinations and placement management.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Java 17</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">MySQL</span>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-icon">📊</div>
+                <h3>Achievo360 – OKR & Performance</h3>
+                <p>
+                    OKR and performance management platform for setting goals,
+                    tracking progress, performance reviews and improving
+                    organizational productivity.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">REST API</span>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-icon">🛒</div>
+                <h3>Wobo4u – E-Commerce Platform</h3>
+                <p>
+                    E-commerce platform with product management, customer
+                    browsing, cart, checkout, seller management, admin
+                    dashboard and order workflows.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">AWS</span>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-icon">🏠</div>
+                <h3>PG Management System</h3>
+                <p>
+                    Management application for PG operations including
+                    accommodation/allocation, tenants, payments and
+                    operational records.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">MySQL</span>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-icon">📚</div>
+                <h3>LearnSphere – Learning Platform</h3>
+                <p>
+                    Learning management platform supporting courses,
+                    assignments, quizzes, certificates and student progress
+                    tracking.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">MySQL</span>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-icon">🎙️</div>
+                <h3>VAANI – Voice Assistant App</h3>
+                <p>
+                    AI-powered voice assistant application with voice commands,
+                    conversational interaction, information services and
+                    mobile integration.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Flutter/Capacitor</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">AI</span>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="about-cta">
+            <div>
+                <h3>Let's build something amazing together.</h3>
+                <p>Have an idea or project in mind? Let's discuss how we can turn it into reality.</p>
+            </div>
+            <a href="contact.html">Let's Connect →</a>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <div class="footer">
+        <div>
+            <b>Kashru Technologies</b>
+            <div style="color:#718096;font-size:11px">Digital solutions for modern business.</div>
+        </div>
+        <div>
+            <a href="services.html">Services</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    <p style="max-width:1240px;margin:25px auto 0;color:#718096;font-size:11px">
+        © 2026 Kashru Technologies. All rights reserved.
+    </p>
+</footer>
+
+<script>
+const menu = document.getElementById('menu');
+menu?.addEventListener('click', () => {
+    const nav = document.querySelector('nav ul');
+    nav.style.display = nav.style.display === 'flex' ? '' : 'flex';
+    nav.style.position = 'absolute';
+    nav.style.top = '78px';
+    nav.style.left = '0';
+    nav.style.right = '0';
+    nav.style.background = '#fff';
+    nav.style.flexDirection = 'column';
+    nav.style.padding = '18px';
+    nav.style.alignItems = 'center';
+});
+</script>
+
+</body>
+</html>
