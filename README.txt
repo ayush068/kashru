@@ -1,15 +1,9 @@
-Kashru Technologies - Multi Page Corporate Website
+Kashru Technologies Premium v2
+Pages: index.html, services.html, products.html, about.html, contact.html
+Shared styling: style.css
 
-Pages:
-- index.html       Home
-- services.html    Services
-- products.html    Products
-- about.html       About
-- contact.html     Contact
-- style.css        Shared responsive styling
-
-Before going live:
-1. Replace YOUR_FORM_ID in contact.html with your Formspree form ID.
-2. Replace hello@kashrutechnologies.com if you use another email.
-3. Replace the WhatsApp/contact details with your real details.
-4. Upload all files/folder contents to your GitHub repository.
+Before production:
+- Replace YOUR_FORM_ID in contact.html.
+- Replace YOUR_WHATSAPP_NUMBER with the real WhatsApp number.
+- Replace placeholder email/social links with real company details.
+- Upload all files together to the same GitHub repository/root.
