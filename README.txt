@@ -1,15 +1,14 @@
-Kashru Technologies - Multi Page Corporate Website
+Kashru Technologies - Next Pages
 
-Pages:
-- index.html       Home
-- services.html    Services
-- products.html    Products
-- about.html       About
-- contact.html     Contact
-- style.css        Shared responsive styling
+Added:
+- projects.html  : detailed project portfolio
+- technologies.html : technology stack
 
-Before going live:
-1. Replace YOUR_FORM_ID in contact.html with your Formspree form ID.
-2. Replace hello@kashrutechnologies.com if you use another email.
-3. Replace the WhatsApp/contact details with your real details.
-4. Upload all files/folder contents to your GitHub repository.
+Updated navigation and footer across:
+- index.html
+- services.html
+- products.html
+- about.html
+- contact.html
+
+Upload all files together to the GitHub repository root.
