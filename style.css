@@ -64,3 +64,6 @@ footer{background:#050f1d;color:#fff;padding:42px 24px}.footer{max-width:1240px;
 }
 .floating-whatsapp:hover{transform:translateY(-4px) scale(1.03);color:#fff}
 @media(max-width:600px){.floating-whatsapp{right:17px;bottom:17px;width:52px;height:52px}}
+
+.logo{display:flex;align-items:center}
+.logo img{flex:0 0 auto}
