@@ -44,3 +44,23 @@ footer{background:#050f1d;color:#fff;padding:42px 24px}.footer{max-width:1240px;
 .tech-note{margin-top:25px;padding:22px;background:#071A33;border-radius:14px;color:#fff}.tech-note strong{color:#FFB62E}.tech-note p{font-size:12px;color:#D8E5F4;margin-top:4px}
 @media(max-width:900px){.project-detail-grid{grid-template-columns:1fr}.tech-grid{grid-template-columns:repeat(3,1fr)}.project-cta{flex-direction:column;align-items:flex-start}}
 @media(max-width:600px){.projects-page,.tech-page{padding:110px 18px 65px}.projects-intro h1,.tech-intro h1{font-size:40px}.feature-list{grid-template-columns:1fr}.tech-grid{grid-template-columns:1fr 1fr}.project-cta{padding:25px}.project-cta h2{font-size:23px}}
+
+.floating-whatsapp{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:#25D366;
+    color:#fff;
+    font-size:25px;
+    font-weight:800;
+    z-index:999;
+    box-shadow:0 12px 30px rgba(37,211,102,.30);
+    transition:.25s ease;
+}
+.floating-whatsapp:hover{transform:translateY(-4px) scale(1.03);color:#fff}
+@media(max-width:600px){.floating-whatsapp{right:17px;bottom:17px;width:52px;height:52px}}

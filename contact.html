@@ -1,4 +1,24 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Contact | Kashru Technologies</title><meta name="description" content="Kashru Technologies - professional digital solutions, software and technology services."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><header>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Contact | Kashru Technologies</title><meta name="description" content="Kashru Technologies - professional digital solutions, software and technology services."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+<style>
+.form select{
+    width:100%;
+    padding:13px;
+    border:1px solid #d0d5dd;
+    border-radius:8px;
+    background:#fff;
+    color:#344054;
+    outline:none;
+    font-size:13px;
+}
+.form select:focus,.form input:focus,.form textarea:focus{
+    border-color:#0B3A82;
+    box-shadow:0 0 0 3px rgba(11,58,130,.08);
+}
+#formStatus.success{display:block!important;background:#ECFDF3;color:#027A48;border:1px solid #ABEFC6}
+#formStatus.error{display:block!important;background:#FEF3F2;color:#B42318;border:1px solid #FECDCA}
+.submit{width:100%}
+</style>
+</head><body><header>
 <nav>
 <a class="logo" href="index.html">Kashru <small>TECHNOLOGIES</small></a>
 <ul>
@@ -23,4 +43,54 @@
 <p style="max-width:1240px;margin:25px auto 0;color:#718096;font-size:11px">© 2026 Kashru Technologies. All rights reserved.</p>
 </footer><script>
 document.querySelector('.menu')?.addEventListener('click',()=>{const u=document.querySelector('nav ul');u.style.display=u.style.display==='flex'?'':'flex';u.style.position='absolute';u.style.top='74px';u.style.left='0';u.style.right='0';u.style.background='#fff';u.style.flexDirection='column';u.style.padding='18px';u.style.alignItems='center';});
-</script></body></html>
+</script>
+<script>
+const enquiryForm = document.getElementById('enquiryForm');
+const formStatus = document.getElementById('formStatus');
+
+enquiryForm?.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const company = document.getElementById('company').value.trim();
+    const service = document.getElementById('service').value;
+    const budget = document.getElementById('budget').value;
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !service || !message) {
+        formStatus.className = 'error';
+        formStatus.textContent = 'Please fill all required fields.';
+        return;
+    }
+
+    const whatsappNumber = '919806604871';
+
+    const enquiry =
+`*Kashru Technologies - New Enquiry*
+
+*Name:* ${name}
+*Email:* ${email}
+*Phone:* ${phone || 'Not provided'}
+*Company:* ${company || 'Not provided'}
+*Service:* ${service}
+*Budget:* ${budget || 'Not decided'}
+*Subject:* ${subject || 'General Enquiry'}
+
+*Project Details:*
+${message}`;
+
+    const whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(enquiry);
+
+    formStatus.className = 'success';
+    formStatus.textContent = 'Opening WhatsApp with your enquiry...';
+
+    setTimeout(() => {
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    }, 350);
+});
+</script>
+<a class="floating-whatsapp" href="https://wa.me/919806604871?text=Hi%20Kashru%20Technologies%2C%20I%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat with Kashru Technologies on WhatsApp">✆</a>
+</body></html>

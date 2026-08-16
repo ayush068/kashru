@@ -1,14 +1,15 @@
-Kashru Technologies - Next Pages
+Kashru Technologies - Working Enquiry Form
 
-Added:
-- projects.html  : detailed project portfolio
-- technologies.html : technology stack
+WhatsApp number configured:
++91 9806604871
 
-Updated navigation and footer across:
-- index.html
-- services.html
-- products.html
-- about.html
-- contact.html
+The Contact page form now:
+- validates required fields
+- collects name, email, phone, company, service, budget, subject and message
+- opens WhatsApp with a formatted enquiry
+- has a success/error status
+- works without a separate backend
 
-Upload all files together to the GitHub repository root.
+A floating WhatsApp button is also added to all pages.
+
+No Formspree account is required for the current WhatsApp flow.
