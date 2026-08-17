@@ -36,7 +36,82 @@
 <a class="cta" href="contact.html">Let's Talk</a>
 <button class="menu" id="menu">☰</button>
 </nav>
-</header><section class="page-hero"><div class="container"><div class="kicker" style="color:#FFB62E">Contact Us</div><h1>Have an idea? Let's build it.</h1><p>Tell us what you're planning and our team can help you choose the right technology.</p></div></section><section class="section"><div class="contact-grid"><div class="contact-box"><div class="kicker" style="color:#FFB62E">Let's work together</div><h2>Start a conversation.</h2><p>Share your requirements, project idea or business challenge.</p><div style="margin-top:25px;font-size:14px;color:#dce7f5"><p>✉ hello@kashrutechnologies.com</p><p style="margin-top:12px">◉ India</p><p style="margin-top:12px">◈ Website & Software Development</p></div></div><form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST"><div class="row"><input name="name" placeholder="Your Name" required><input type="email" name="email" placeholder="Email Address" required></div><div class="row"><input name="phone" placeholder="Phone Number"><input name="company" placeholder="Company"></div><input name="subject" placeholder="Subject"><textarea name="message" placeholder="Tell us about your project..." required></textarea><button class="submit">Send Enquiry →</button></form></div></section><footer>
+</header><section class="page-hero"><div class="container"><div class="kicker" style="color:#FFB62E">Contact Us</div><h1>Have an idea? Let's build it.</h1><p>Tell us what you're planning and our team can help you choose the right technology.</p></div></section><section class="section"><div class="contact-grid"><div class="contact-box"><div class="kicker" style="color:#FFB62E">Let's work together</div><h2>Start a conversation.</h2><p>Share your requirements, project idea or business challenge.</p><div style="margin-top:25px;font-size:14px;color:#dce7f5"><p>✉ hello@kashrutechnologies.com</p><p style="margin-top:12px">◉ India</p><p style="margin-top:12px">◈ Website & Software Development</p></div></div>
+<form class="form" id="enquiryForm">
+
+    <div class="row">
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your Name"
+            required
+        >
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email Address"
+            required
+        >
+    </div>
+
+    <div class="row">
+        <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Phone Number"
+        >
+
+        <input
+            type="text"
+            id="company"
+            name="company"
+            placeholder="Company"
+        >
+    </div>
+
+    <select id="service" name="service" required>
+        <option value="">Select Service</option>
+        <option value="Web Development">Web Development</option>
+        <option value="App Development">App Development</option>
+        <option value="Software Development">Software Development</option>
+        <option value="ERP Development">ERP Development</option>
+        <option value="AI Solutions">AI Solutions</option>
+        <option value="Digital Marketing">Digital Marketing</option>
+        <option value="Cloud Solutions">Cloud Solutions</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <input
+        type="text"
+        id="subject"
+        name="subject"
+        placeholder="Subject"
+    >
+
+    <textarea
+        id="message"
+        name="message"
+        placeholder="Tell us about your project..."
+        required
+    ></textarea>
+
+    <div id="formStatus" style="
+        display:none;
+        margin-bottom:15px;
+        padding:12px;
+        border-radius:8px;
+        font-size:14px;
+    "></div>
+
+    <button type="submit" class="submit">
+        Send Enquiry →
+    </button>
+
+</form></div></section><footer>
 <div class="footer">
 <div><b>Kashru Technologies</b><div style="color:#718096;font-size:11px">Digital solutions for modern business.</div></div>
 <div>
