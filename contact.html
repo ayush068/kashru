@@ -1,258 +1,970 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Contact | Kashru Technologies</title><meta name="description" content="Kashru Technologies - professional digital solutions, software and technology services."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact | Kashru Technologies</title>
+
+<meta
+    name="description"
+    content="Contact Kashru Technologies for professional software development, web applications, mobile apps, ERP, AI and cloud solutions."
+>
+
+<meta
+    name="robots"
+    content="index, follow"
+>
+
+<meta
+    name="author"
+    content="Kashru Technologies"
+>
+
+<link
+    rel="canonical"
+    href="https://kashru.san-vad.com/contact.html"
+>
+
+
+<!-- Google Fonts -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+
+<!-- CSS -->
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+
+
+<!-- Favicon -->
+
+<link
+    rel="icon"
+    type="image/png"
+    sizes="512x512"
+    href="assets/favicon.png"
+>
+
+<link
+    rel="icon"
+    type="image/png"
+    sizes="180x180"
+    href="assets/favicon-180.png"
+>
+
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="assets/favicon-180.png"
+>
+
+
 <style>
-.form select{
-    width:100%;
-    padding:13px;
-    border:1px solid #d0d5dd;
-    border-radius:8px;
-    background:#fff;
-    color:#344054;
-    outline:none;
-    font-size:13px;
+
+/* =========================
+   CONTACT FORM
+========================= */
+
+.form select {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 8px;
+
+    background: #fff;
+
+    color: #344054;
+
+    outline: none;
+
+    font-size: 13px;
+
+    font-family: inherit;
 }
-.form select:focus,.form input:focus,.form textarea:focus{
-    border-color:#0B3A82;
-    box-shadow:0 0 0 3px rgba(11,58,130,.08);
+
+
+.form select:focus,
+.form input:focus,
+.form textarea:focus {
+
+    border-color: #0B3A82;
+
+    box-shadow:
+        0 0 0 3px rgba(11,58,130,.08);
+
 }
-#formStatus.success{display:block!important;background:#ECFDF3;color:#027A48;border:1px solid #ABEFC6}
-#formStatus.error{display:block!important;background:#FEF3F2;color:#B42318;border:1px solid #FECDCA}
-.submit{width:100%}
+
+
+.form textarea {
+
+    min-height: 150px;
+
+    resize: vertical;
+
+}
+
+
+.submit {
+
+    width: 100%;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+
+.submit:disabled {
+
+    opacity: .65;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   FORM STATUS
+========================= */
+
+#formStatus {
+
+    display: none;
+
+    margin-bottom: 15px;
+
+    padding: 12px 14px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+#formStatus.success {
+
+    display: block !important;
+
+    background: #ECFDF3;
+
+    color: #027A48;
+
+    border: 1px solid #ABEFC6;
+}
+
+
+#formStatus.error {
+
+    display: block !important;
+
+    background: #FEF3F2;
+
+    color: #B42318;
+
+    border: 1px solid #FECDCA;
+}
+
+
+.form-note {
+
+    margin-top: 10px;
+
+    font-size: 11px;
+
+    color: #718096;
+
+    line-height: 1.5;
+}
+
 </style>
-<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png">
-<link rel="icon" type="image/png" sizes="180x180" href="assets/favicon-180.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
-</head><body><header>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
 <nav>
-<a class="logo" href="index.html"><img src="assets/favicon-180.png" alt="Kashru Technologies" style="width:34px;height:34px;object-fit:cover;border-radius:50%;vertical-align:middle;margin-right:8px">Kashru <small>TECHNOLOGIES</small></a>
+
+<a
+    class="logo"
+    href="index.html"
+>
+
+<img
+    src="assets/favicon-180.png"
+    alt="Kashru Technologies"
+    style="
+        width:34px;
+        height:34px;
+        object-fit:cover;
+        border-radius:50%;
+        vertical-align:middle;
+        margin-right:8px;
+    "
+>
+
+Kashru
+
+<small>TECHNOLOGIES</small>
+
+</a>
+
+
 <ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="services.html">Services</a></li>
-<li><a href="products.html">Products</a></li>
-<li><a href="projects.html">Projects</a></li>
-<li><a href="technologies.html">Technologies</a></li>
-<li><a href="about.html">About</a></li>
-<li><a class="active" href="contact.html">Contact</a></li>
+
+<li>
+<a href="index.html">
+Home
+</a>
+</li>
+
+<li>
+<a href="services.html">
+Services
+</a>
+</li>
+
+<li>
+<a href="products.html">
+Products
+</a>
+</li>
+
+<li>
+<a href="projects.html">
+Projects
+</a>
+</li>
+
+<li>
+<a href="technologies.html">
+Technologies
+</a>
+</li>
+
+<li>
+<a href="about.html">
+About
+</a>
+</li>
+
+<li>
+<a
+    class="active"
+    href="contact.html"
+>
+Contact
+</a>
+</li>
+
 </ul>
-<a class="cta" href="contact.html">Let's Talk</a>
-<button class="menu" id="menu">☰</button>
+
+
+<a
+    class="cta"
+    href="contact.html"
+>
+Let's Talk
+</a>
+
+
+<button
+    class="menu"
+    id="menu"
+    type="button"
+    aria-label="Open navigation menu"
+>
+☰
+</button>
+
 </nav>
-</header><section class="page-hero"><div class="container"><div class="kicker" style="color:#FFB62E">Contact Us</div><h1>Have an idea? Let's build it.</h1><p>Tell us what you're planning and our team can help you choose the right technology.</p></div></section><section class="section"><div class="contact-grid"><div class="contact-box"><div class="kicker" style="color:#FFB62E">Let's work together</div><h2>Start a conversation.</h2><p>Share your requirements, project idea or business challenge.</p><div style="margin-top:25px;font-size:14px;color:#dce7f5"><p>✉ hello@kashrutechnologies.com</p><p style="margin-top:12px">◉ India</p><p style="margin-top:12px">◈ Website & Software Development</p></div></div>
-<form class="form" id="enquiryForm">
 
-    <div class="row">
-        <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Your Name"
-            required
-        >
+</header>
 
-        <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email Address"
-            required
-        >
-    </div>
 
-    <div class="row">
-        <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Phone Number"
-        >
 
-        <input
-            type="text"
-            id="company"
-            name="company"
-            placeholder="Company"
-        >
-    </div>
+<!-- =========================
+     PAGE HERO
+========================= -->
 
-    <select id="service" name="service" required>
-        <option value="">Select Service</option>
-        <option value="Web Development">Web Development</option>
-        <option value="App Development">App Development</option>
-        <option value="Software Development">Software Development</option>
-        <option value="ERP Development">ERP Development</option>
-        <option value="AI Solutions">AI Solutions</option>
-        <option value="Digital Marketing">Digital Marketing</option>
-        <option value="Cloud Solutions">Cloud Solutions</option>
-        <option value="Other">Other</option>
-    </select>
+<section class="page-hero">
 
-    <input
-        type="text"
-        id="subject"
-        name="subject"
-        placeholder="Subject"
-    >
+<div class="container">
 
-    <textarea
-        id="message"
-        name="message"
-        placeholder="Tell us about your project..."
-        required
-    ></textarea>
+<div
+    class="kicker"
+    style="color:#FFB62E"
+>
+Contact Us
+</div>
 
-    <div id="formStatus" style="
-        display:none;
-        margin-bottom:15px;
-        padding:12px;
-        border-radius:8px;
+
+<h1>
+Have an idea? Let's build it.
+</h1>
+
+
+<p>
+Tell us what you're planning and our team can help you choose the right technology.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT SECTION
+========================= -->
+
+<section class="section">
+
+<div class="contact-grid">
+
+
+<!-- LEFT SIDE -->
+
+<div class="contact-box">
+
+<div
+    class="kicker"
+    style="color:#FFB62E"
+>
+Let's work together
+</div>
+
+
+<h2>
+Start a conversation.
+</h2>
+
+
+<p>
+Share your requirements, project idea or business challenge.
+</p>
+
+
+<div
+    style="
+        margin-top:25px;
         font-size:14px;
-    "></div>
+        color:#dce7f5;
+    "
+>
 
-    <button type="submit" class="submit">
-        Send Enquiry →
-    </button>
+<p>
+✉ hello@kashrutechnologies.com
+</p>
 
-</form></div></section><footer>
+
+<p style="margin-top:12px">
+◉ India
+</p>
+
+
+<p style="margin-top:12px">
+◈ Website & Software Development
+</p>
+
+
+<p style="margin-top:12px">
+◈ Custom Software Solutions
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- RIGHT SIDE FORM -->
+
+<form
+    class="form"
+    id="enquiryForm"
+>
+
+
+<div class="row">
+
+<input
+    type="text"
+    id="name"
+    name="name"
+    placeholder="Your Name"
+    autocomplete="name"
+    required
+>
+
+
+<input
+    type="email"
+    id="email"
+    name="email"
+    placeholder="Email Address"
+    autocomplete="email"
+    required
+>
+
+</div>
+
+
+
+<div class="row">
+
+<input
+    type="tel"
+    id="phone"
+    name="phone"
+    placeholder="Phone Number"
+    autocomplete="tel"
+>
+
+
+<input
+    type="text"
+    id="company"
+    name="company"
+    placeholder="Company"
+    autocomplete="organization"
+>
+
+</div>
+
+
+
+<select
+    id="service"
+    name="service"
+    required
+>
+
+<option value="">
+Select Service
+</option>
+
+<option value="Web Development">
+Web Development
+</option>
+
+<option value="App Development">
+App Development
+</option>
+
+<option value="Software Development">
+Software Development
+</option>
+
+<option value="ERP Development">
+ERP Development
+</option>
+
+<option value="AI Solutions">
+AI Solutions
+</option>
+
+<option value="Digital Marketing">
+Digital Marketing
+</option>
+
+<option value="Cloud Solutions">
+Cloud Solutions
+</option>
+
+<option value="UI/UX Design">
+UI/UX Design
+</option>
+
+<option value="Maintenance & Support">
+Maintenance & Support
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+
+
+<input
+    type="text"
+    id="subject"
+    name="subject"
+    placeholder="Subject"
+>
+
+
+
+<textarea
+    id="message"
+    name="message"
+    placeholder="Tell us about your project..."
+    required
+></textarea>
+
+
+
+<!-- STATUS -->
+
+<div
+    id="formStatus"
+    role="alert"
+    aria-live="polite"
+></div>
+
+
+
+<button
+    type="submit"
+    class="submit"
+    id="submitButton"
+>
+Send Enquiry →
+</button>
+
+
+<div class="form-note">
+
+Your enquiry will be securely submitted to Kashru Technologies.
+
+</div>
+
+
+</form>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
 <div class="footer">
-<div><b>Kashru Technologies</b><div style="color:#718096;font-size:11px">Digital solutions for modern business.</div></div>
+
 <div>
-<a href="services.html">Services</a><a href="products.html">Products</a><a href="projects.html">Projects</a><a href="technologies.html">Technologies</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+
+<b>
+Kashru Technologies
+</b>
+
+<div
+    style="
+        color:#718096;
+        font-size:11px;
+    "
+>
+Digital solutions for modern business.
 </div>
+
 </div>
-<p style="max-width:1240px;margin:25px auto 0;color:#718096;font-size:11px">© 2026 Kashru Technologies. All rights reserved.</p>
-</footer><script>
-document.querySelector('.menu')?.addEventListener('click',()=>{const u=document.querySelector('nav ul');u.style.display=u.style.display==='flex'?'':'flex';u.style.position='absolute';u.style.top='74px';u.style.left='0';u.style.right='0';u.style.background='#fff';u.style.flexDirection='column';u.style.padding='18px';u.style.alignItems='center';});
-</script>
+
+
+<div>
+
+<a href="services.html">
+Services
+</a>
+
+<a href="products.html">
+Products
+</a>
+
+<a href="projects.html">
+Projects
+</a>
+
+<a href="technologies.html">
+Technologies
+</a>
+
+<a href="about.html">
+About
+</a>
+
+<a href="contact.html">
+Contact
+</a>
+
+</div>
+
+</div>
+
+
+<p
+    style="
+        max-width:1240px;
+        margin:25px auto 0;
+        color:#718096;
+        font-size:11px;
+    "
+>
+© 2026 Kashru Technologies. All rights reserved.
+</p>
+
+</footer>
+
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
 <script>
-const enquiryForm = document.getElementById('enquiryForm');
-const formStatus = document.getElementById('formStatus');
 
-enquiryForm?.addEventListener('submit', function(event) {
-    event.preventDefault();
+const menu = document.getElementById('menu');
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const company = document.getElementById('company').value.trim();
-    const service = document.getElementById('service').value;
-    const budget = document.getElementById('budget').value;
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
+menu?.addEventListener('click', () => {
 
-    if (!name || !email || !service || !message) {
-        formStatus.className = 'error';
-        formStatus.textContent = 'Please fill all required fields.';
-        return;
-    }
+    const u = document.querySelector('nav ul');
 
-    const whatsappNumber = '919806604871';
+    if (!u) return;
 
- <script>
-const enquiryForm = document.getElementById('enquiryForm');
-const formStatus = document.getElementById('formStatus');
+    if (u.style.display === 'flex') {
 
-enquiryForm?.addEventListener('submit', async function (event) {
-
-    event.preventDefault();
-
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const company = document.getElementById('company').value.trim();
-    const service = document.getElementById('service').value;
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    if (!name || !email || !service || !message) {
-
-        formStatus.className = 'error';
-        formStatus.style.display = 'block';
-        formStatus.textContent = 'Please fill all required fields.';
+        u.style.display = '';
 
         return;
     }
 
-    const submitButton = enquiryForm.querySelector('.submit');
+    u.style.display = 'flex';
 
-    submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
+    u.style.position = 'absolute';
 
-    formStatus.className = '';
-    formStatus.style.display = 'block';
-    formStatus.textContent = 'Sending your enquiry...';
+    u.style.top = '74px';
 
-    /*
-     * Spring Boot Backend
-     */
-    const API_URL = 'http://localhost:8080/api/contact';
+    u.style.left = '0';
 
-    const contactData = {
+    u.style.right = '0';
 
-        name: name,
+    u.style.background = '#fff';
 
-        email: email,
+    u.style.flexDirection = 'column';
 
-        phone: phone,
+    u.style.padding = '18px';
 
-        service: service,
+    u.style.alignItems = 'center';
 
-        message:
-            'Company: ' + (company || 'Not provided') +
-            '\nSubject: ' + (subject || 'General Enquiry') +
-            '\n\nProject Details:\n' + message
-    };
+});
 
-    try {
+</script>
 
-        const response = await fetch(API_URL, {
 
-            method: 'POST',
 
-            headers: {
-                'Content-Type': 'application/json'
-            },
+<!-- =========================
+     CONTACT API
+========================= -->
 
-            body: JSON.stringify(contactData)
-        });
+<script>
 
-        if (!response.ok) {
+const enquiryForm =
+    document.getElementById('enquiryForm');
 
-            const errorText = await response.text();
+const formStatus =
+    document.getElementById('formStatus');
 
-            throw new Error(
-                errorText || 'Failed to submit enquiry'
-            );
+const submitButton =
+    document.getElementById('submitButton');
+
+
+
+enquiryForm?.addEventListener(
+    'submit',
+    async function(event) {
+
+        event.preventDefault();
+
+
+        /* =========================
+           GET FORM VALUES
+        ========================= */
+
+        const name =
+            document.getElementById('name')
+            .value
+            .trim();
+
+
+        const email =
+            document.getElementById('email')
+            .value
+            .trim();
+
+
+        const phone =
+            document.getElementById('phone')
+            .value
+            .trim();
+
+
+        const company =
+            document.getElementById('company')
+            .value
+            .trim();
+
+
+        const service =
+            document.getElementById('service')
+            .value;
+
+
+        const subject =
+            document.getElementById('subject')
+            .value
+            .trim();
+
+
+        const message =
+            document.getElementById('message')
+            .value
+            .trim();
+
+
+
+        /* =========================
+           VALIDATION
+        ========================= */
+
+        if (
+            !name ||
+            !email ||
+            !service ||
+            !message
+        ) {
+
+            formStatus.className = 'error';
+
+            formStatus.style.display = 'block';
+
+            formStatus.textContent =
+                'Please fill all required fields.';
+
+            return;
         }
 
-        const savedContact = await response.json();
 
-        formStatus.className = 'success';
+
+        /* =========================
+           BUTTON STATE
+        ========================= */
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            'Sending...';
+
+
+        formStatus.className = '';
+
         formStatus.style.display = 'block';
 
         formStatus.textContent =
-            'Thank you! Your enquiry has been submitted successfully.';
+            'Sending your enquiry...';
 
-        enquiryForm.reset();
 
-    } catch (error) {
 
-        console.error('Contact form error:', error);
+        /* =========================
+           BACKEND API
+        ========================= */
 
-        formStatus.className = 'error';
-        formStatus.style.display = 'block';
+        const API_URL =
+            'http://localhost:8080/api/contact';
 
-        formStatus.textContent =
-            'Unable to send your enquiry. Please try again later.';
 
-    } finally {
 
-        submitButton.disabled = false;
-        submitButton.textContent = 'Send Enquiry →';
+        /* =========================
+           REQUEST DATA
+        ========================= */
+
+        const contactData = {
+
+            name: name,
+
+            email: email,
+
+            phone: phone,
+
+            service: service,
+
+            message:
+                'Company: ' +
+                (company || 'Not provided') +
+
+                '\nSubject: ' +
+                (subject || 'General Enquiry') +
+
+                '\n\nProject Details:\n' +
+                message
+
+        };
+
+
+
+        /* =========================
+           SEND REQUEST
+        ========================= */
+
+        try {
+
+            const response =
+                await fetch(
+                    API_URL,
+                    {
+                        method: 'POST',
+
+                        headers: {
+                            'Content-Type':
+                                'application/json'
+                        },
+
+                        body:
+                            JSON.stringify(
+                                contactData
+                            )
+                    }
+                );
+
+
+
+            /* =========================
+               ERROR RESPONSE
+            ========================= */
+
+            if (!response.ok) {
+
+                const errorText =
+                    await response.text();
+
+                throw new Error(
+                    errorText ||
+                    'Failed to submit enquiry.'
+                );
+            }
+
+
+
+            /* =========================
+               SUCCESS
+            ========================= */
+
+            await response.json();
+
+
+            formStatus.className =
+                'success';
+
+            formStatus.style.display =
+                'block';
+
+            formStatus.textContent =
+                'Thank you! Your enquiry has been submitted successfully.';
+
+
+            enquiryForm.reset();
+
+        }
+
+
+        /* =========================
+           CATCH ERROR
+        ========================= */
+
+        catch(error) {
+
+            console.error(
+                'Contact form error:',
+                error
+            );
+
+
+            formStatus.className =
+                'error';
+
+            formStatus.style.display =
+                'block';
+
+            formStatus.textContent =
+                'Unable to send your enquiry. Please try again later.';
+
+        }
+
+
+        /* =========================
+           RESTORE BUTTON
+        ========================= */
+
+        finally {
+
+            submitButton.disabled =
+                false;
+
+            submitButton.textContent =
+                'Send Enquiry →';
+
+        }
+
     }
 
-});
+);
+
 </script>
-    }, 350);
-});
-</script>
-<a class="floating-whatsapp" href="https://wa.me/919806604871?text=Hi%20Kashru%20Technologies%2C%20I%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat with Kashru Technologies on WhatsApp">✆</a>
-</body></html>
+
+
+
+<!-- =========================
+     FLOATING WHATSAPP
+========================= -->
+
+<a
+    class="floating-whatsapp"
+    href="https://wa.me/919806604871?text=Hi%20Kashru%20Technologies%2C%20I%20want%20to%20discuss%20a%20project."
+    target="_blank"
+    rel="noopener"
+    aria-label="Chat with Kashru Technologies on WhatsApp"
+>
+✆
+</a>
+
+
+</body>
+
+</html>
