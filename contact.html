@@ -146,27 +146,111 @@ enquiryForm?.addEventListener('submit', function(event) {
 
     const whatsappNumber = '919806604871';
 
-    const enquiry =
-`*Kashru Technologies - New Enquiry*
+ <script>
+const enquiryForm = document.getElementById('enquiryForm');
+const formStatus = document.getElementById('formStatus');
 
-*Name:* ${name}
-*Email:* ${email}
-*Phone:* ${phone || 'Not provided'}
-*Company:* ${company || 'Not provided'}
-*Service:* ${service}
-*Budget:* ${budget || 'Not decided'}
-*Subject:* ${subject || 'General Enquiry'}
+enquiryForm?.addEventListener('submit', async function (event) {
 
-*Project Details:*
-${message}`;
+    event.preventDefault();
 
-    const whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(enquiry);
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const company = document.getElementById('company').value.trim();
+    const service = document.getElementById('service').value;
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
 
-    formStatus.className = 'success';
-    formStatus.textContent = 'Opening WhatsApp with your enquiry...';
+    if (!name || !email || !service || !message) {
 
-    setTimeout(() => {
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        formStatus.className = 'error';
+        formStatus.style.display = 'block';
+        formStatus.textContent = 'Please fill all required fields.';
+
+        return;
+    }
+
+    const submitButton = enquiryForm.querySelector('.submit');
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+
+    formStatus.className = '';
+    formStatus.style.display = 'block';
+    formStatus.textContent = 'Sending your enquiry...';
+
+    /*
+     * Spring Boot Backend
+     */
+    const API_URL = 'http://localhost:8080/api/contact';
+
+    const contactData = {
+
+        name: name,
+
+        email: email,
+
+        phone: phone,
+
+        service: service,
+
+        message:
+            'Company: ' + (company || 'Not provided') +
+            '\nSubject: ' + (subject || 'General Enquiry') +
+            '\n\nProject Details:\n' + message
+    };
+
+    try {
+
+        const response = await fetch(API_URL, {
+
+            method: 'POST',
+
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify(contactData)
+        });
+
+        if (!response.ok) {
+
+            const errorText = await response.text();
+
+            throw new Error(
+                errorText || 'Failed to submit enquiry'
+            );
+        }
+
+        const savedContact = await response.json();
+
+        formStatus.className = 'success';
+        formStatus.style.display = 'block';
+
+        formStatus.textContent =
+            'Thank you! Your enquiry has been submitted successfully.';
+
+        enquiryForm.reset();
+
+    } catch (error) {
+
+        console.error('Contact form error:', error);
+
+        formStatus.className = 'error';
+        formStatus.style.display = 'block';
+
+        formStatus.textContent =
+            'Unable to send your enquiry. Please try again later.';
+
+    } finally {
+
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Enquiry →';
+    }
+
+});
+</script>
     }, 350);
 });
 </script>
