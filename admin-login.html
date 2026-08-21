@@ -1,1 +1,206 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Kashru Technologies</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        .login-card {
+            width: 380px;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+        }
+
+        .login-card h1 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-card">
+
+    <h1>Admin Login</h1>
+
+    <p class="subtitle">Kashru Technologies</p>
+
+    <form id="loginForm">
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="admin@kashrutechnologies.com"
+            required
+        >
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter password"
+            required
+        >
+
+        <button type="submit" id="loginBtn">
+            Login
+        </button>
+
+    </form>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+
+const API_URL = "https://kashru-backend.onrender.com";
+
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const button = document.getElementById("loginBtn");
+        const message = document.getElementById("message");
+
+        button.disabled = true;
+        button.textContent = "Logging in...";
+        message.textContent = "";
+
+        try {
+
+            const body = new URLSearchParams();
+
+            body.append("email", email);
+            body.append("password", password);
+
+            const response = await fetch(
+                `${API_URL}/api/admin/login`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":
+                            "application/x-www-form-urlencoded"
+                    },
+                    body: body.toString()
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.message || "Invalid email or password"
+                );
+            }
+
+            localStorage.setItem(
+                "admin",
+                JSON.stringify(data)
+            );
+
+            message.style.color = "green";
+            message.textContent = "Login successful!";
+
+            // Dashboard next step
+            setTimeout(() => {
+                window.location.href = "admin-dashboard.html";
+            }, 800);
+
+        } catch (error) {
+
+            console.error(error);
+
+            message.style.color = "red";
+            message.textContent =
+                error.message || "Login failed";
+
+        } finally {
+
+            button.disabled = false;
+            button.textContent = "Login";
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
