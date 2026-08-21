@@ -162,13 +162,15 @@ document
                 }
             );
 
-            const data = await response.json();
+           const responseText = await response.text();
 
-            if (!response.ok) {
-                throw new Error(
-                    data.message || "Invalid email or password"
-                );
-            }
+if (!response.ok) {
+    throw new Error(
+        responseText || "Invalid email or password"
+    );
+}
+
+const data = JSON.parse(responseText);
 
             localStorage.setItem(
                 "admin",
