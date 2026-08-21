@@ -20,6 +20,7 @@ public class ContactController {
         this.contactService = contactService;
     }
 
+    // CREATE CONTACT
     @PostMapping
     public ResponseEntity<Contact> createContact(
             @Valid @RequestBody Contact contact) {
@@ -31,11 +32,34 @@ public class ContactController {
                 .body(savedContact);
     }
 
+    // GET ALL CONTACTS
     @GetMapping
     public ResponseEntity<List<Contact>> getAllContacts() {
 
         return ResponseEntity.ok(
                 contactService.getAllContacts()
+        );
+    }
+
+    // GET CONTACT BY ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Contact> getContactById(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                contactService.getContactById(id)
+        );
+    }
+
+    // DELETE CONTACT
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteContact(
+            @PathVariable Long id) {
+
+        contactService.deleteContact(id);
+
+        return ResponseEntity.ok(
+                "Contact deleted successfully"
         );
     }
 }
