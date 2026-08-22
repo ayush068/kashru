@@ -149,16 +149,15 @@
         </div>
 
 
-        <div class="card">
+       <div class="card">
 
-            <h3>Total Products</h3>
+    <h3>Total Products</h3>
 
-            <div class="number">
-                0
-            </div>
+    <div class="number" id="productCount">
+        0
+    </div>
 
-        </div>
-
+</div>
 
         <div class="card">
 
@@ -197,15 +196,15 @@
 </div>
 
 
-        <div class="menu-item">
+      <div class="menu-item" onclick="openProducts()">
 
-            <h3>📦 Products</h3>
+    <h3>📦 Products</h3>
 
-            <p>
-                Manage products
-            </p>
+    <p>
+        Manage products
+    </p>
 
-        </div>
+</div>
 
 
         <div class="menu-item">
@@ -283,6 +282,42 @@ function openContacts() {
     window.location.href = "admin-contacts.html";
 
 }
+
+function openProducts() {
+
+    window.location.href = "admin-products.html";
+
+}
+
+async function loadProductCount() {
+
+    try {
+
+        const response = await fetch(
+            "https://kashru-backend.onrender.com/api/products"
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to load products");
+        }
+
+        const products = await response.json();
+
+        document.getElementById("productCount").textContent =
+            products.length;
+
+    } catch (error) {
+
+        console.error(
+            "Product count error:",
+            error
+        );
+
+        document.getElementById("productCount").textContent = "0";
+    }
+}
+
+loadProductCount();
 </script>
 
 </body>

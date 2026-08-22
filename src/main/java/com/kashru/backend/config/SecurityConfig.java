@@ -30,10 +30,11 @@ public class SecurityConfig {
 
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-                    "/",
-                    "/api/admin/**",
-                    "/api/contact/**"
-                ).permitAll()
+    "/",
+    "/api/admin/**",
+    "/api/contact/**",
+    "/api/products/**"
+).permitAll()
                 .anyRequest().permitAll()
             );
 

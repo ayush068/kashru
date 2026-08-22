@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Products - Kashru Technologies</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        .navbar {
+            height: 70px;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            border: none;
+            padding: 10px 16px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .back {
+            background: #374151;
+            color: white;
+        }
+
+        .logout {
+            background: #dc2626;
+            color: white;
+        }
+
+        .container {
+            padding: 30px;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #6b7280;
+        }
+
+        .add-btn {
+            background: #2563eb;
+            color: white;
+            padding: 12px 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            white-space: nowrap;
+        }
+
+        th {
+            background: #f9fafb;
+            color: #374151;
+        }
+
+        td {
+            color: #4b5563;
+        }
+
+        .product-image {
+            width: 55px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .view-btn {
+            background: #2563eb;
+            color: white;
+            margin-right: 5px;
+        }
+
+        .edit-btn {
+            background: #f59e0b;
+            color: white;
+            margin-right: 5px;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+            color: white;
+        }
+
+        .active {
+            color: #027a48;
+            font-weight: bold;
+        }
+
+        .inactive {
+            color: #b42318;
+            font-weight: bold;
+        }
+
+        .empty,
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+
+        /* MODAL */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .close {
+            background: #f3f4f6;
+            color: #111827;
+            font-size: 20px;
+            padding: 5px 12px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .preview {
+            margin-top: 10px;
+        }
+
+        .preview img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .save-btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            padding: 13px;
+            font-size: 16px;
+        }
+
+        .save-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .success {
+            display: block;
+            background: #ecfdf3;
+            color: #027a48;
+        }
+
+        .error {
+            display: block;
+            background: #fef3f2;
+            color: #b42318;
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                padding: 15px;
+            }
+
+            .navbar {
+                padding: 0 15px;
+            }
+
+            .navbar h2 {
+                font-size: 17px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+<nav class="navbar">
+
+    <h2>Kashru Technologies Admin</h2>
+
+    <div class="buttons">
+
+        <button
+            class="back"
+            onclick="goBack()">
+            Dashboard
+        </button>
+
+        <button
+            class="logout"
+            onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="header">
+
+        <div>
+            <h1>Products</h1>
+
+            <p>
+                Manage your Kashru Technologies products
+            </p>
+        </div>
+
+        <button
+            class="add-btn"
+            onclick="openAddModal()">
+            + Add Product
+        </button>
+
+    </div>
+
+
+    <input
+        type="text"
+        id="searchInput"
+        class="search-box"
+        placeholder="Search product by name, category or description..."
+        oninput="searchProducts()"
+    >
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Image</th>
+
+                    <th>Name</th>
+
+                    <th>Category</th>
+
+                    <th>Price</th>
+
+                    <th>Stock</th>
+
+                    <th>Status</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="productTable">
+
+                <tr>
+                    <td
+                        colspan="8"
+                        class="loading">
+                        Loading products...
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT MODAL -->
+
+<div
+    class="modal"
+    id="productModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add Product
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="formMessage"
+            class="message">
+        </div>
+
+
+        <form id="productForm">
+
+
+            <div class="form-group">
+
+                <label>
+                    Product Name *
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    required
+                    placeholder="Enter product name">
+
+            </div>
+
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Price *
+                    </label>
+
+                    <input
+                        type="number"
+                        id="price"
+                        min="0"
+                        step="0.01"
+                        required
+                        placeholder="25000">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Stock
+                    </label>
+
+                    <input
+                        type="number"
+                        id="stock"
+                        min="0"
+                        value="0"
+                        placeholder="10">
+
+                </div>
+
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <input
+                    type="text"
+                    id="category"
+                    placeholder="Web Development">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Describe your product..."></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Image URL
+                </label>
+
+                <input
+                    type="url"
+                    id="imageUrl"
+                    placeholder="https://example.com/image.jpg"
+                    oninput="previewImage()">
+
+                <div
+                    class="preview"
+                    id="imagePreview">
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Status
+                </label>
+
+                <select id="active">
+
+                    <option value="true">
+                        Active
+                    </option>
+
+                    <option value="false">
+                        Inactive
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="save-btn"
+                id="saveButton">
+
+                Save Product
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+const API_URL =
+    "https://kashru-backend.onrender.com";
+
+
+let products = [];
+
+let editingProductId = null;
+
+
+// ================================
+// LOGIN CHECK
+// ================================
+
+const admin =
+    localStorage.getItem("admin");
+
+
+if (!admin) {
+
+    window.location.href =
+        "admin-login.html";
+
+}
+
+
+// ================================
+// LOAD PRODUCTS
+// ================================
+
+async function loadProducts() {
+
+    const table =
+        document.getElementById(
+            "productTable"
+        );
+
+
+    table.innerHTML = `
+        <tr>
+            <td colspan="8" class="loading">
+                Loading products...
+            </td>
+        </tr>
+    `;
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/api/products`
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load products"
+            );
+
+        }
+
+
+        products =
+            await response.json();
+
+
+        displayProducts(products);
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="8" class="empty">
+                    Failed to load products
+                </td>
+            </tr>
+        `;
+
+    }
+
+}
+
+
+// ================================
+// DISPLAY PRODUCTS
+// ================================
+
+function displayProducts(data) {
+
+    const table =
+        document.getElementById(
+            "productTable"
+        );
+
+
+    if (!data || data.length === 0) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="8" class="empty">
+                    No products found
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML = data.map(product => `
+
+        <tr>
+
+            <td>
+                ${product.id}
+            </td>
+
+
+            <td>
+
+                ${
+                    product.imageUrl
+
+                    ?
+
+                    `<img
+                        src="${escapeHtml(product.imageUrl)}"
+                        class="product-image"
+                        alt="${escapeHtml(product.name)}"
+                        onerror="this.style.display='none'"
+                    >`
+
+                    :
+
+                    "-"
+                }
+
+            </td>
+
+
+            <td>
+                ${escapeHtml(product.name)}
+            </td>
+
+
+            <td>
+                ${escapeHtml(product.category || "-")}
+            </td>
+
+
+            <td>
+                ₹${Number(product.price || 0).toLocaleString("en-IN")}
+            </td>
+
+
+            <td>
+                ${product.stock ?? 0}
+            </td>
+
+
+            <td>
+
+                ${
+                    product.active
+
+                    ?
+
+                    `<span class="active">
+                        Active
+                    </span>`
+
+                    :
+
+                    `<span class="inactive">
+                        Inactive
+                    </span>`
+                }
+
+            </td>
+
+
+            <td>
+
+                <button
+                    class="view-btn"
+                    onclick="viewProduct(${product.id})">
+                    View
+                </button>
+
+
+                <button
+                    class="edit-btn"
+                    onclick="editProduct(${product.id})">
+                    Edit
+                </button>
+
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteProduct(${product.id})">
+                    Delete
+                </button>
+
+            </td>
+
+        </tr>
+
+    `).join("");
+
+}
+
+
+// ================================
+// SEARCH
+// ================================
+
+function searchProducts() {
+
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    if (!search) {
+
+        displayProducts(products);
+
+        return;
+
+    }
+
+
+    const filtered =
+        products.filter(product => {
+
+            return (
+
+                (product.name || "")
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                (product.category || "")
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                (product.description || "")
+                    .toLowerCase()
+                    .includes(search)
+
+            );
+
+        });
+
+
+    displayProducts(filtered);
+
+}
+
+
+// ================================
+// OPEN ADD MODAL
+// ================================
+
+function openAddModal() {
+
+    editingProductId = null;
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Add Product";
+
+
+    document.getElementById(
+        "productForm"
+    ).reset();
+
+
+    document.getElementById(
+        "stock"
+    ).value = 0;
+
+
+    document.getElementById(
+        "active"
+    ).value = "true";
+
+
+    document.getElementById(
+        "imagePreview"
+    ).innerHTML = "";
+
+
+    clearMessage();
+
+
+    document.getElementById(
+        "productModal"
+    ).style.display = "flex";
+
+}
+
+
+// ================================
+// CLOSE MODAL
+// ================================
+
+function closeModal() {
+
+    document.getElementById(
+        "productModal"
+    ).style.display = "none";
+
+}
+
+
+// ================================
+// IMAGE PREVIEW
+// ================================
+
+function previewImage() {
+
+    const url =
+        document.getElementById(
+            "imageUrl"
+        ).value.trim();
+
+
+    const preview =
+        document.getElementById(
+            "imagePreview"
+        );
+
+
+    if (!url) {
+
+        preview.innerHTML = "";
+
+        return;
+
+    }
+
+
+    preview.innerHTML = `
+
+        <img
+            src="${escapeHtml(url)}"
+            alt="Preview"
+            onerror="this.alt='Invalid image URL'"
+        >
+
+    `;
+
+}
+
+
+// ================================
+// CREATE PRODUCT
+// ================================
+
+document
+    .getElementById("productForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const saveButton =
+                document.getElementById(
+                    "saveButton"
+                );
+
+
+            const product = {
+
+                name:
+                    document
+                        .getElementById("name")
+                        .value
+                        .trim(),
+
+                price:
+                    Number(
+                        document
+                            .getElementById("price")
+                            .value
+                    ),
+
+                description:
+                    document
+                        .getElementById("description")
+                        .value
+                        .trim(),
+
+                category:
+                    document
+                        .getElementById("category")
+                        .value
+                        .trim(),
+
+                imageUrl:
+                    document
+                        .getElementById("imageUrl")
+                        .value
+                        .trim(),
+
+                stock:
+                    Number(
+                        document
+                            .getElementById("stock")
+                            .value || 0
+                    ),
+
+                active:
+                    document
+                        .getElementById("active")
+                        .value === "true"
+
+            };
+
+
+            if (!product.name) {
+
+                showMessage(
+                    "Product name is required.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            saveButton.disabled = true;
+
+            saveButton.textContent =
+                editingProductId
+                    ? "Updating..."
+                    : "Saving...";
+
+
+            try {
+
+                let response;
+
+
+                if (editingProductId) {
+
+                    response =
+                        await fetch(
+                            `${API_URL}/api/products/${editingProductId}`,
+                            {
+                                method: "PUT",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify(product)
+                            }
+                        );
+
+                } else {
+
+                    response =
+                        await fetch(
+                            `${API_URL}/api/products`,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify(product)
+                            }
+                        );
+
+                }
+
+
+                const responseText =
+                    await response.text();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        responseText ||
+                        "Failed to save product"
+                    );
+
+                }
+
+
+                showMessage(
+                    editingProductId
+                        ? "Product updated successfully."
+                        : "Product added successfully.",
+                    "success"
+                );
+
+
+                await loadProducts();
+
+
+                setTimeout(
+                    closeModal,
+                    700
+                );
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                showMessage(
+                    error.message ||
+                    "Failed to save product.",
+                    "error"
+                );
+
+            } finally {
+
+                saveButton.disabled = false;
+
+                saveButton.textContent =
+                    editingProductId
+                        ? "Update Product"
+                        : "Save Product";
+
+            }
+
+        }
+    );
+
+
+// ================================
+// EDIT PRODUCT
+// ================================
+
+async function editProduct(id) {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/api/products/${id}`
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Product not found"
+            );
+
+        }
+
+
+        const product =
+            await response.json();
+
+
+        editingProductId = id;
+
+
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "Edit Product";
+
+
+        document.getElementById(
+            "name"
+        ).value =
+            product.name || "";
+
+
+        document.getElementById(
+            "price"
+        ).value =
+            product.price ?? "";
+
+
+        document.getElementById(
+            "stock"
+        ).value =
+            product.stock ?? 0;
+
+
+        document.getElementById(
+            "category"
+        ).value =
+            product.category || "";
+
+
+        document.getElementById(
+            "description"
+        ).value =
+            product.description || "";
+
+
+        document.getElementById(
+            "imageUrl"
+        ).value =
+            product.imageUrl || "";
+
+
+        document.getElementById(
+            "active"
+        ).value =
+            product.active
+                ? "true"
+                : "false";
+
+
+        previewImage();
+
+        clearMessage();
+
+
+        document.getElementById(
+            "productModal"
+        ).style.display =
+            "flex";
+
+
+        document.getElementById(
+            "saveButton"
+        ).textContent =
+            "Update Product";
+
+
+    } catch (error) {
+
+        alert(
+            "Failed to load product"
+        );
+
+    }
+
+}
+
+
+// ================================
+// VIEW PRODUCT
+// ================================
+
+async function viewProduct(id) {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/api/products/${id}`
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Product not found"
+            );
+
+        }
+
+
+        const product =
+            await response.json();
+
+
+        alert(
+
+            "Product: " +
+            (product.name || "-") +
+
+            "\n\nPrice: ₹" +
+            Number(
+                product.price || 0
+            ).toLocaleString("en-IN") +
+
+            "\n\nCategory: " +
+            (product.category || "-") +
+
+            "\n\nStock: " +
+            (product.stock ?? 0) +
+
+            "\n\nStatus: " +
+            (
+                product.active
+                    ? "Active"
+                    : "Inactive"
+            ) +
+
+            "\n\nDescription:\n" +
+            (product.description || "-")
+
+        );
+
+
+    } catch (error) {
+
+        alert(
+            "Failed to load product"
+        );
+
+    }
+
+}
+
+
+// ================================
+// DELETE PRODUCT
+// ================================
+
+async function deleteProduct(id) {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this product?"
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/api/products/${id}`,
+                {
+                    method: "DELETE"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            const text =
+                await response.text();
+
+            throw new Error(
+                text ||
+                "Delete failed"
+            );
+
+        }
+
+
+        alert(
+            "Product deleted successfully."
+        );
+
+
+        loadProducts();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        alert(
+            error.message ||
+            "Failed to delete product."
+        );
+
+    }
+
+}
+
+
+// ================================
+// MESSAGES
+// ================================
+
+function showMessage(
+    text,
+    type
+) {
+
+    const message =
+        document.getElementById(
+            "formMessage"
+        );
+
+
+    message.className =
+        "message " + type;
+
+
+    message.textContent =
+        text;
+
+}
+
+
+function clearMessage() {
+
+    const message =
+        document.getElementById(
+            "formMessage"
+        );
+
+
+    message.className =
+        "message";
+
+
+    message.textContent =
+        "";
+
+}
+
+
+// ================================
+// DASHBOARD
+// ================================
+
+function goBack() {
+
+    window.location.href =
+        "admin-dashboard.html";
+
+}
+
+
+// ================================
+// LOGOUT
+// ================================
+
+function logout() {
+
+    localStorage.removeItem(
+        "admin"
+    );
+
+    window.location.href =
+        "admin-login.html";
+
+}
+
+
+// ================================
+// SECURITY HELPER
+// ================================
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+// ================================
+// INITIAL LOAD
+// ================================
+
+loadProducts();
+
+
+</script>
+
+</body>
+
+</html>
