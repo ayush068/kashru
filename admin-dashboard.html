@@ -1,310 +1,1678 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Dashboard - Kashru Technologies</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Admin Dashboard | Kashru Technologies
+    </title>
+
+    <meta
+        name="description"
+        content="Kashru Technologies Admin Dashboard"
+    >
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fb;
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background:
+                #f4f7fb;
+
+            color:
+                #111827;
+
+            min-height:
+                100vh;
+
         }
+
+
+        /* =====================================
+           NAVBAR
+        ===================================== */
 
         .navbar {
-            height: 70px;
-            background: #111827;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
+
+            height:
+                72px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #111827,
+                    #1f2937
+                );
+
+            color:
+                white;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            padding:
+                0 32px;
+
+            box-shadow:
+                0 4px 18px
+                rgba(0,0,0,.12);
+
+            position:
+                sticky;
+
+            top:
+                0;
+
+            z-index:
+                100;
+
         }
 
-        .navbar h2 {
-            font-size: 22px;
+
+        .brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
         }
+
+
+        .brand-icon {
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            border-radius:
+                12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                21px;
+
+            box-shadow:
+                0 5px 15px
+                rgba(37,99,235,.35);
+
+        }
+
+
+        .brand-text h2 {
+
+            font-size:
+                19px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                -.3px;
+
+        }
+
+
+        .brand-text span {
+
+            display:
+                block;
+
+            color:
+                #9ca3af;
+
+            font-size:
+                11px;
+
+            margin-top:
+                2px;
+
+        }
+
+
+        .nav-right {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+        }
+
+
+        .admin-badge {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            padding:
+                8px 12px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border:
+                1px solid
+                rgba(255,255,255,.1);
+
+            border-radius:
+                10px;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .status-dot {
+
+            width:
+                8px;
+
+            height:
+                8px;
+
+            background:
+                #22c55e;
+
+            border-radius:
+                50%;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(34,197,94,.12);
+
+        }
+
 
         .logout {
-            background: #dc2626;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 7px;
-            cursor: pointer;
+
+            background:
+                #dc2626;
+
+            color:
+                white;
+
+            border:
+                none;
+
+            padding:
+                10px 16px;
+
+            border-radius:
+                9px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                600;
+
+            transition:
+                .2s;
+
         }
+
+
+        .logout:hover {
+
+            background:
+                #b91c1c;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        /* =====================================
+           MAIN
+        ===================================== */
 
         .container {
-            padding: 30px;
+
+            max-width:
+                1400px;
+
+            margin:
+                auto;
+
+            padding:
+                35px 30px 50px;
+
         }
+
+
+        /* =====================================
+           WELCOME
+        ===================================== */
 
         .welcome {
-            margin-bottom: 25px;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom:
+                30px;
+
+            gap:
+                20px;
+
         }
+
 
         .welcome h1 {
-            margin-bottom: 8px;
+
+            font-size:
+                31px;
+
+            font-weight:
+                800;
+
+            margin-bottom:
+                7px;
+
+            letter-spacing:
+                -.7px;
+
         }
+
 
         .welcome p {
-            color: #6b7280;
+
+            color:
+                #6b7280;
+
+            font-size:
+                14px;
+
         }
+
+
+        .refresh-btn {
+
+            border:
+                1px solid
+                #d1d5db;
+
+            background:
+                white;
+
+            color:
+                #374151;
+
+            padding:
+                11px 16px;
+
+            border-radius:
+                9px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                600;
+
+            transition:
+                .2s;
+
+        }
+
+
+        .refresh-btn:hover {
+
+            border-color:
+                #2563eb;
+
+            color:
+                #2563eb;
+
+            background:
+                #eff6ff;
+
+        }
+
+
+        /* =====================================
+           STAT CARDS
+        ===================================== */
 
         .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    1fr
+                );
+
+            gap:
+                20px;
+
         }
+
 
         .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+            background:
+                white;
+
+            padding:
+                23px;
+
+            border-radius:
+                16px;
+
+            border:
+                1px solid
+                #e5e7eb;
+
+            box-shadow:
+                0 5px 20px
+                rgba(15,23,42,.05);
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            transition:
+                .25s;
+
         }
+
+
+        .card:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 12px 28px
+                rgba(15,23,42,.09);
+
+        }
+
+
+        .card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            left:
+                0;
+
+            top:
+                0;
+
+            bottom:
+                0;
+
+            width:
+                4px;
+
+            background:
+                #2563eb;
+
+        }
+
+
+        .card:nth-child(2)::before {
+
+            background:
+                #f59e0b;
+
+        }
+
+
+        .card:nth-child(3)::before {
+
+            background:
+                #7c3aed;
+
+        }
+
+
+        .card:nth-child(4)::before {
+
+            background:
+                #16a34a;
+
+        }
+
+
+        .card-top {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                flex-start;
+
+        }
+
 
         .card h3 {
-            color: #6b7280;
-            margin-bottom: 12px;
+
+            color:
+                #6b7280;
+
+            font-size:
+                12px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .5px;
+
+            margin-bottom:
+                12px;
+
         }
+
 
         .card .number {
-            font-size: 32px;
-            font-weight: bold;
+
+            font-size:
+                31px;
+
+            font-weight:
+                800;
+
+            color:
+                #111827;
+
         }
+
+
+        .card-sub {
+
+            margin-top:
+                8px;
+
+            color:
+                #6b7280;
+
+            font-size:
+                12px;
+
+        }
+
+
+        .card-icon {
+
+            width:
+                47px;
+
+            height:
+                47px;
+
+            border-radius:
+                13px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                22px;
+
+        }
+
+
+        .icon-blue {
+
+            background:
+                #eff6ff;
+
+        }
+
+
+        .icon-orange {
+
+            background:
+                #fff7ed;
+
+        }
+
+
+        .icon-purple {
+
+            background:
+                #f5f3ff;
+
+        }
+
+
+        .icon-green {
+
+            background:
+                #f0fdf4;
+
+        }
+
+
+        /* =====================================
+           SECTION TITLE
+        ===================================== */
+
+        .section-title {
+
+            margin:
+                35px 0 18px;
+
+        }
+
+
+        .section-title h2 {
+
+            font-size:
+                20px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .section-title p {
+
+            color:
+                #6b7280;
+
+            font-size:
+                13px;
+
+            margin-top:
+                4px;
+
+        }
+
+
+        /* =====================================
+           MENU
+        ===================================== */
 
         .menu {
-            margin-top: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    1fr
+                );
+
+            gap:
+                20px;
+
         }
+
 
         .menu-item {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: 0.2s;
+
+            background:
+                white;
+
+            padding:
+                23px;
+
+            border-radius:
+                15px;
+
+            border:
+                1px solid
+                #e5e7eb;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0,0,0,.05);
+
+            cursor:
+                pointer;
+
+            transition:
+                .25s;
+
+            position:
+                relative;
+
         }
+
 
         .menu-item:hover {
-            transform: translateY(-3px);
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                #bfdbfe;
+
+            box-shadow:
+                0 12px 25px
+                rgba(37,99,235,.1);
+
         }
+
+
+        .menu-icon {
+
+            width:
+                48px;
+
+            height:
+                48px;
+
+            border-radius:
+                13px;
+
+            background:
+                #eff6ff;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                22px;
+
+            margin-bottom:
+                17px;
+
+        }
+
 
         .menu-item h3 {
-            margin-bottom: 8px;
+
+            font-size:
+                16px;
+
+            margin-bottom:
+                7px;
+
         }
 
+
         .menu-item p {
-            color: #6b7280;
+
+            color:
+                #6b7280;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.5;
+
         }
+
+
+        .arrow {
+
+            position:
+                absolute;
+
+            right:
+                20px;
+
+            bottom:
+                20px;
+
+            color:
+                #9ca3af;
+
+            font-size:
+                18px;
+
+            transition:
+                .2s;
+
+        }
+
+
+        .menu-item:hover .arrow {
+
+            color:
+                #2563eb;
+
+            transform:
+                translateX(3px);
+
+        }
+
+
+        /* =====================================
+           QUICK ACTIONS
+        ===================================== */
+
+        .quick-actions {
+
+            background:
+                white;
+
+            border:
+                1px solid
+                #e5e7eb;
+
+            border-radius:
+                16px;
+
+            padding:
+                23px;
+
+            margin-top:
+                30px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0,0,0,.04);
+
+        }
+
+
+        .quick-actions h2 {
+
+            font-size:
+                18px;
+
+            margin-bottom:
+                17px;
+
+        }
+
+
+        .actions {
+
+            display:
+                flex;
+
+            gap:
+                12px;
+
+            flex-wrap:
+                wrap;
+
+        }
+
+
+        .action-btn {
+
+            border:
+                1px solid
+                #d1d5db;
+
+            background:
+                #fff;
+
+            padding:
+                11px 16px;
+
+            border-radius:
+                9px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                600;
+
+            color:
+                #374151;
+
+            transition:
+                .2s;
+
+        }
+
+
+        .action-btn:hover {
+
+            border-color:
+                #2563eb;
+
+            color:
+                #2563eb;
+
+            background:
+                #eff6ff;
+
+        }
+
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        .footer {
+
+            text-align:
+                center;
+
+            color:
+                #9ca3af;
+
+            font-size:
+                12px;
+
+            margin-top:
+                40px;
+
+            padding-top:
+                25px;
+
+            border-top:
+                1px solid
+                #e5e7eb;
+
+        }
+
+
+        /* =====================================
+           RESPONSIVE
+        ===================================== */
+
+        @media (
+            max-width: 1000px
+        ) {
+
+            .cards {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+
+            }
+
+
+            .menu {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+
+            }
+
+        }
+
+
+        @media (
+            max-width: 650px
+        ) {
+
+            .navbar {
+
+                padding:
+                    0 16px;
+
+                height:
+                    65px;
+
+            }
+
+
+            .brand-text span {
+
+                display:
+                    none;
+
+            }
+
+
+            .brand-text h2 {
+
+                font-size:
+                    16px;
+
+            }
+
+
+            .admin-badge {
+
+                display:
+                    none;
+
+            }
+
+
+            .container {
+
+                padding:
+                    25px 16px 40px;
+
+            }
+
+
+            .welcome {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .welcome h1 {
+
+                font-size:
+                    25px;
+
+            }
+
+
+            .cards {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .menu {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .logout {
+
+                padding:
+                    9px 13px;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
 <nav class="navbar">
 
-    <h2>Kashru Technologies Admin</h2>
+    <div class="brand">
 
-    <button class="logout" onclick="logout()">
-        Logout
-    </button>
+        <div class="brand-icon">
+            KT
+        </div>
+
+        <div class="brand-text">
+
+            <h2>
+                Kashru Technologies
+            </h2>
+
+            <span>
+                Administration Portal
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-right">
+
+        <div class="admin-badge">
+
+            <span class="status-dot"></span>
+
+            Admin Online
+
+        </div>
+
+
+        <button
+            class="logout"
+            onclick="logout()"
+        >
+
+            Logout
+
+        </button>
+
+    </div>
 
 </nav>
 
 
+<!-- =========================================
+     MAIN
+========================================= -->
+
 <div class="container">
+
+
+    <!-- WELCOME -->
 
     <div class="welcome">
 
-        <h1>Admin Dashboard</h1>
+        <div>
 
-        <p id="welcomeText">
-            Welcome Admin
-        </p>
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p id="welcomeText">
+                Welcome Admin
+            </p>
+
+        </div>
+
+
+        <button
+            class="refresh-btn"
+            onclick="refreshDashboard()"
+        >
+
+            ↻ &nbsp; Refresh Dashboard
+
+        </button>
 
     </div>
 
+
+    <!-- =====================================
+         STAT CARDS
+    ====================================== -->
 
     <div class="cards">
 
+
+        <!-- CONTACTS -->
+
         <div class="card">
 
-            <h3>Total Contacts</h3>
+            <div class="card-top">
 
-            <div class="number" id="contactCount">
-                0
+                <div>
+
+                    <h3>
+                        Total Contacts
+                    </h3>
+
+                    <div
+                        class="number"
+                        id="contactCount"
+                    >
+                        0
+                    </div>
+
+                    <div class="card-sub">
+                        Website enquiries
+                    </div>
+
+                </div>
+
+
+                <div class="card-icon icon-blue">
+                    📩
+                </div>
+
             </div>
 
         </div>
 
 
-       <div class="card">
+        <!-- PRODUCTS -->
 
-    <h3>Total Products</h3>
+        <div class="card">
 
-    <div class="number" id="productCount">
-        0
+            <div class="card-top">
+
+                <div>
+
+                    <h3>
+                        Total Products
+                    </h3>
+
+                    <div
+                        class="number"
+                        id="productCount"
+                    >
+                        0
+                    </div>
+
+                    <div class="card-sub">
+                        Products in catalog
+                    </div>
+
+                </div>
+
+
+                <div class="card-icon icon-orange">
+                    📦
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECTS -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div>
+
+                    <h3>
+                        Total Projects
+                    </h3>
+
+                    <div
+                        class="number"
+                        id="projectCount"
+                    >
+                        0
+                    </div>
+
+                    <div class="card-sub">
+                        Completed projects
+                    </div>
+
+                </div>
+
+
+                <div class="card-icon icon-purple">
+                    🚀
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADMIN -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div>
+
+                    <h3>
+                        Admin Status
+                    </h3>
+
+                    <div
+                        class="number"
+                        style="font-size:25px;color:#16a34a"
+                    >
+                        Active
+                    </div>
+
+                    <div class="card-sub">
+                        System access enabled
+                    </div>
+
+                </div>
+
+
+                <div class="card-icon icon-green">
+                    🛡️
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-</div>
 
-        <div class="card">
+    <!-- =====================================
+         MANAGEMENT
+    ====================================== -->
 
-            <h3>Total Projects</h3>
+    <div class="section-title">
 
-            <div class="number">
-                0
-            </div>
+        <h2>
+            Management
+        </h2>
 
-        </div>
-
-
-        <div class="card">
-
-            <h3>Admin Status</h3>
-
-            <div class="number">
-                Active
-            </div>
-
-        </div>
+        <p>
+            Manage your website content and business data
+        </p>
 
     </div>
 
 
     <div class="menu">
 
-        <div class="menu-item" onclick="openContacts()">
 
-    <h3>📩 Contacts</h3>
+        <!-- CONTACTS -->
 
-    <p>
-        View website contact messages
-    </p>
+        <div
+            class="menu-item"
+            onclick="openContacts()"
+        >
 
-</div>
+            <div class="menu-icon">
+                📩
+            </div>
 
-
-      <div class="menu-item" onclick="openProducts()">
-
-    <h3>📦 Products</h3>
-
-    <p>
-        Manage products
-    </p>
-
-</div>
-
-
-        <div class="menu-item">
-
-            <h3>🚀 Projects</h3>
+            <h3>
+                Contact Messages
+            </h3>
 
             <p>
-                Manage projects
+                View and manage enquiries
+                received from your website.
             </p>
+
+            <span class="arrow">
+                →
+            </span>
 
         </div>
 
 
-        <div class="menu-item">
+        <!-- PRODUCTS -->
 
-            <h3>⚙️ Settings</h3>
+        <div
+            class="menu-item"
+            onclick="openProducts()"
+        >
+
+            <div class="menu-icon">
+                📦
+            </div>
+
+            <h3>
+                Products
+            </h3>
 
             <p>
-                Admin settings
+                Add, edit and manage products
+                displayed on your website.
             </p>
+
+            <span class="arrow">
+                →
+            </span>
+
+        </div>
+
+
+        <!-- PROJECTS -->
+
+        <div
+            class="menu-item"
+            onclick="openProjects()"
+        >
+
+            <div class="menu-icon">
+                🚀
+            </div>
+
+            <h3>
+                Projects
+            </h3>
+
+            <p>
+                Manage your portfolio and
+                completed projects.
+            </p>
+
+            <span class="arrow">
+                →
+            </span>
+
+        </div>
+
+
+        <!-- SETTINGS -->
+
+        <div
+            class="menu-item"
+            onclick="openSettings()"
+        >
+
+            <div class="menu-icon">
+                ⚙️
+            </div>
+
+            <h3>
+                Settings
+            </h3>
+
+            <p>
+                Manage admin account and
+                website settings.
+            </p>
+
+            <span class="arrow">
+                →
+            </span>
 
         </div>
 
     </div>
+
+
+    <!-- =====================================
+         QUICK ACTIONS
+    ====================================== -->
+
+    <div class="quick-actions">
+
+        <h2>
+            Quick Actions
+        </h2>
+
+
+        <div class="actions">
+
+            <button
+                class="action-btn"
+                onclick="openProducts()"
+            >
+                ➕ Manage Products
+            </button>
+
+
+            <button
+                class="action-btn"
+                onclick="openContacts()"
+            >
+                📩 View Contacts
+            </button>
+
+
+            <button
+                class="action-btn"
+                onclick="openProjects()"
+            >
+                🚀 Manage Projects
+            </button>
+
+
+            <button
+                class="action-btn"
+                onclick="refreshDashboard()"
+            >
+                🔄 Refresh Data
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        © 2026 Kashru Technologies.
+        Admin Panel.
+
+    </div>
+
 
 </div>
 
 
 <script>
 
-    // Check login
 
-    const admin = localStorage.getItem("admin");
+/* =========================================
+   API
+========================================= */
 
-    if (!admin) {
+const API_URL =
+    "https://kashru-backend.onrender.com";
 
-        window.location.href = "admin-login.html";
+
+/* =========================================
+   LOGIN CHECK
+========================================= */
+
+const admin =
+    localStorage.getItem("admin");
+
+
+if (!admin) {
+
+    window.location.href =
+        "admin-login.html";
+
+}
+
+
+/* =========================================
+   ADMIN INFORMATION
+========================================= */
+
+if (admin) {
+
+    try {
+
+        const data =
+            JSON.parse(admin);
+
+        document
+            .getElementById(
+                "welcomeText"
+            )
+            .textContent =
+                "Welcome back, " +
+                (data.name || "Admin") +
+                " 👋";
+
+    } catch (error) {
+
+        console.error(error);
 
     }
 
-
-    // Show admin information
-
-    if (admin) {
-
-        try {
-
-            const data = JSON.parse(admin);
-
-            document.getElementById("welcomeText").textContent =
-                "Welcome, " + (data.name || "Admin");
-
-        } catch (error) {
-
-            console.log(error);
-
-        }
-
-    }
+}
 
 
-    // Logout
+/* =========================================
+   LOGOUT
+========================================= */
 
-    function logout() {
+function logout() {
 
-        localStorage.removeItem("admin");
+    localStorage.removeItem(
+        "admin"
+    );
 
-        window.location.href = "admin-login.html";
+    window.location.href =
+        "admin-login.html";
 
-    }
+}
 
+
+/* =========================================
+   OPEN CONTACTS
+========================================= */
 
 function openContacts() {
 
-    window.location.href = "admin-contacts.html";
+    window.location.href =
+        "admin-contacts.html";
 
 }
+
+
+/* =========================================
+   OPEN PRODUCTS
+========================================= */
 
 function openProducts() {
 
-    window.location.href = "admin-products.html";
+    window.location.href =
+        "admin-products.html";
 
 }
+
+
+/* =========================================
+   OPEN PROJECTS
+========================================= */
+
+function openProjects() {
+
+    /*
+       Projects page baad me banayenge.
+       Filhaal existing projects page open karega.
+    */
+
+    window.location.href =
+        "projects.html";
+
+}
+
+
+/* =========================================
+   SETTINGS
+========================================= */
+
+function openSettings() {
+
+    alert(
+        "Settings module will be available soon."
+    );
+
+}
+
+
+/* =========================================
+   LOAD PRODUCT COUNT
+========================================= */
 
 async function loadProductCount() {
 
     try {
 
-        const response = await fetch(
-            "https://kashru-backend.onrender.com/api/products"
-        );
+        const response =
+            await fetch(
+                `${API_URL}/api/products`
+            );
+
 
         if (!response.ok) {
-            throw new Error("Failed to load products");
+
+            throw new Error(
+                "Failed to load products"
+            );
+
         }
 
-        const products = await response.json();
 
-        document.getElementById("productCount").textContent =
-            products.length;
+        const products =
+            await response.json();
+
+
+        document
+            .getElementById(
+                "productCount"
+            )
+            .textContent =
+                products.length;
+
 
     } catch (error) {
 
@@ -313,12 +1681,153 @@ async function loadProductCount() {
             error
         );
 
-        document.getElementById("productCount").textContent = "0";
+
+        document
+            .getElementById(
+                "productCount"
+            )
+            .textContent =
+                "0";
+
     }
+
 }
 
+
+/* =========================================
+   LOAD CONTACT COUNT
+========================================= */
+
+async function loadContactCount() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/api/contact`
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load contacts"
+            );
+
+        }
+
+
+        const contacts =
+            await response.json();
+
+
+        document
+            .getElementById(
+                "contactCount"
+            )
+            .textContent =
+                contacts.length;
+
+
+    } catch (error) {
+
+        console.error(
+            "Contact count error:",
+            error
+        );
+
+
+        document
+            .getElementById(
+                "contactCount"
+            )
+            .textContent =
+                "0";
+
+    }
+
+}
+
+
+/* =========================================
+   PROJECT COUNT
+========================================= */
+
+async function loadProjectCount() {
+
+    /*
+       Projects backend abhi nahi bana hai,
+       isliye currently existing project count
+       yahan manually set kiya hai.
+
+       Jab projects API banega,
+       isi function ko API se connect kar denge.
+    */
+
+    document
+        .getElementById(
+            "projectCount"
+        )
+        .textContent =
+            "11";
+
+}
+
+
+/* =========================================
+   REFRESH DASHBOARD
+========================================= */
+
+async function refreshDashboard() {
+
+    const button =
+        document.querySelector(
+            ".refresh-btn"
+        );
+
+
+    button.textContent =
+        "⟳ Loading...";
+
+
+    await Promise.all([
+        loadProductCount(),
+        loadContactCount(),
+        loadProjectCount()
+    ]);
+
+
+    button.textContent =
+        "✓ Updated";
+
+
+    setTimeout(
+        () => {
+
+            button.textContent =
+                "↻  Refresh Dashboard";
+
+        },
+        1200
+    );
+
+}
+
+
+/* =========================================
+   INITIAL LOAD
+========================================= */
+
 loadProductCount();
+
+loadContactCount();
+
+loadProjectCount();
+
+
 </script>
 
+
 </body>
+
 </html>
