@@ -158,4 +158,135 @@ content="https://kashru.san-vad.com/assets/favicon.png">
 </footer><script>
 document.querySelector('.menu')?.addEventListener('click',()=>{const u=document.querySelector('nav ul');u.style.display=u.style.display==='flex'?'':'flex';u.style.position='absolute';u.style.top='74px';u.style.left='0';u.style.right='0';u.style.background='#fff';u.style.flexDirection='column';u.style.padding='18px';u.style.alignItems='center';});
 </script><a class="floating-whatsapp" href="https://wa.me/919806604871?text=Hi%20Kashru%20Technologies%2C%20I%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat with Kashru Technologies on WhatsApp">✆</a>
+
+<script>
+(function () {
+
+    const VISITOR_API =
+        "https://kashru-backend.onrender.com/api/visitors/track";
+
+    // Create/reuse visitor session
+    let sessionId =
+        localStorage.getItem("kashru_visitor_session");
+
+    if (!sessionId) {
+
+        sessionId =
+            crypto.randomUUID();
+
+        localStorage.setItem(
+            "kashru_visitor_session",
+            sessionId
+        );
+    }
+
+
+    function getDevice() {
+
+        const width = window.innerWidth;
+
+        if (width <= 600) {
+            return "Mobile";
+        }
+
+        if (width <= 1024) {
+            return "Tablet";
+        }
+
+        return "Desktop";
+    }
+
+
+    function getBrowser() {
+
+        const ua =
+            navigator.userAgent;
+
+        if (ua.includes("Edg")) {
+            return "Edge";
+        }
+
+        if (ua.includes("Chrome")) {
+            return "Chrome";
+        }
+
+        if (ua.includes("Firefox")) {
+            return "Firefox";
+        }
+
+        if (ua.includes("Safari")) {
+            return "Safari";
+        }
+
+        return "Other";
+    }
+
+
+    async function trackVisitor() {
+
+        try {
+
+            const params =
+                new URLSearchParams();
+
+            params.append(
+                "sessionId",
+                sessionId
+            );
+
+            params.append(
+                "pageUrl",
+                window.location.pathname
+            );
+
+            params.append(
+                "pageTitle",
+                document.title
+            );
+
+            params.append(
+                "device",
+                getDevice()
+            );
+
+            params.append(
+                "browser",
+                getBrowser()
+            );
+
+
+            await fetch(
+                VISITOR_API +
+                "?" +
+                params.toString(),
+                {
+                    method: "POST"
+                }
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Visitor tracking error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    // Track immediately
+    trackVisitor();
+
+
+    // Heartbeat every 60 seconds
+    setInterval(
+        trackVisitor,
+        60000
+    );
+
+
+})();
+</script>
 </body></html>

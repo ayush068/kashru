@@ -1284,6 +1284,37 @@
         </div>
 
 
+        <div class="card">
+
+    <div class="card-top">
+
+        <div>
+
+            <h3>
+                Live Visitors
+            </h3>
+
+            <div
+                class="number"
+                id="liveVisitorCount"
+            >
+                0
+            </div>
+
+            <div class="card-sub">
+                Active in last 5 minutes
+            </div>
+
+        </div>
+
+        <div class="card-icon icon-green">
+            🟢
+        </div>
+
+    </div>
+
+</div>
+
         <!-- ADMIN -->
 
         <div class="card">
@@ -1824,6 +1855,39 @@ loadContactCount();
 
 loadProjectCount();
 
+
+async function loadLiveVisitors() {
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/api/visitors/live`
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to load live visitors");
+        }
+
+        const count = await response.json();
+
+        document.getElementById(
+            "liveVisitorCount"
+        ).textContent = count;
+
+    } catch (error) {
+
+        console.error(
+            "Live visitor error:",
+            error
+        );
+
+        document.getElementById(
+            "liveVisitorCount"
+        ).textContent = "0";
+    }
+}
+
+loadLiveVisitors();
 
 </script>
 
