@@ -1076,6 +1076,171 @@
 
         }
 
+
+        .analytics-section {
+    margin-top: 35px;
+}
+
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.analytics-header h2 {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.analytics-header p {
+    color: #6b7280;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.live-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #ecfdf3;
+    color: #027a48;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.live-badge span {
+    width: 8px;
+    height: 8px;
+    background: #12b76a;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(18,183,106,.12);
+}
+
+.analytics-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.analytics-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.04);
+}
+
+.analytics-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 13px;
+    background: #f3f6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    flex-shrink: 0;
+}
+
+.analytics-card span {
+    display: block;
+    color: #6b7280;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.analytics-card strong {
+    display: block;
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.analytics-card small {
+    display: block;
+    color: #9ca3af;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.pages-panel {
+    margin-top: 20px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 22px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.04);
+}
+
+.pages-header h3 {
+    font-size: 17px;
+}
+
+.pages-header p {
+    color: #6b7280;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.page-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.page-row:last-child {
+    border-bottom: none;
+}
+
+.page-name {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.page-count {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.analytics-loading {
+    text-align: center;
+    padding: 25px;
+    color: #9ca3af;
+}
+
+@media (max-width: 1000px) {
+
+    .analytics-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .analytics-header {
+        align-items: flex-start;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .analytics-cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
     </style>
 
 </head>
@@ -1350,6 +1515,88 @@
         </div>
 
     </div>
+
+    <div class="analytics-section">
+
+    <div class="analytics-header">
+        <div>
+            <h2>Website Analytics</h2>
+            <p>Monitor your website traffic and visitor activity.</p>
+        </div>
+
+        <div class="live-badge">
+            <span></span>
+            Live
+        </div>
+    </div>
+
+
+    <div class="analytics-cards">
+
+        <div class="analytics-card">
+            <div class="analytics-icon">🟢</div>
+
+            <div>
+                <span>Live Visitors</span>
+                <strong id="analyticsLiveVisitors">0</strong>
+                <small>Active in last 5 minutes</small>
+            </div>
+        </div>
+
+
+        <div class="analytics-card">
+            <div class="analytics-icon">👥</div>
+
+            <div>
+                <span>Today's Visitors</span>
+                <strong id="analyticsTodayVisitors">0</strong>
+                <small>Unique sessions today</small>
+            </div>
+        </div>
+
+
+        <div class="analytics-card">
+            <div class="analytics-icon">👁️</div>
+
+            <div>
+                <span>Today's Page Views</span>
+                <strong id="analyticsPageViews">0</strong>
+                <small>Pages viewed today</small>
+            </div>
+        </div>
+
+
+        <div class="analytics-card">
+            <div class="analytics-icon">📈</div>
+
+            <div>
+                <span>Total Visitors</span>
+                <strong id="analyticsTotalVisitors">0</strong>
+                <small>All recorded sessions</small>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="pages-panel">
+
+        <div class="pages-header">
+            <div>
+                <h3>🔥 Most Visited Pages</h3>
+                <p>Today's visitor activity by page</p>
+            </div>
+        </div>
+
+        <div id="mostVisitedPages">
+            <div class="analytics-loading">
+                Loading analytics...
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
 
     <!-- =====================================
@@ -1888,6 +2135,142 @@ async function loadLiveVisitors() {
 }
 
 loadLiveVisitors();
+
+
+async function loadAnalytics() {
+
+    try {
+
+        const [
+            liveResponse,
+            todayResponse,
+            pageViewsResponse,
+            totalResponse,
+            pagesResponse
+        ] = await Promise.all([
+
+            fetch(`${API_URL}/api/visitors/live`),
+
+            fetch(`${API_URL}/api/visitors/today`),
+
+            fetch(`${API_URL}/api/visitors/today/pageviews`),
+
+            fetch(`${API_URL}/api/visitors/total`),
+
+            fetch(`${API_URL}/api/visitors/most-visited`)
+
+        ]);
+
+
+        const live =
+            await liveResponse.json();
+
+        const today =
+            await todayResponse.json();
+
+        const pageViews =
+            await pageViewsResponse.json();
+
+        const total =
+            await totalResponse.json();
+
+        const pages =
+            await pagesResponse.json();
+
+
+        document.getElementById(
+            "analyticsLiveVisitors"
+        ).textContent = live;
+
+
+        document.getElementById(
+            "analyticsTodayVisitors"
+        ).textContent = today;
+
+
+        document.getElementById(
+            "analyticsPageViews"
+        ).textContent = pageViews;
+
+
+        document.getElementById(
+            "analyticsTotalVisitors"
+        ).textContent = total;
+
+
+        displayMostVisitedPages(pages);
+
+
+    } catch (error) {
+
+        console.error(
+            "Analytics error:",
+            error
+        );
+
+    }
+
+}
+
+
+function displayMostVisitedPages(pages) {
+
+    const container =
+        document.getElementById(
+            "mostVisitedPages"
+        );
+
+
+    const entries =
+        Object.entries(pages);
+
+
+    if (entries.length === 0) {
+
+        container.innerHTML = `
+            <div class="analytics-loading">
+                No visitor activity yet.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    entries.sort(
+        (a, b) => b[1] - a[1]
+    );
+
+
+    container.innerHTML =
+        entries
+            .slice(0, 10)
+            .map(
+                ([page, count]) => `
+                    <div class="page-row">
+
+                        <div class="page-name">
+                            ${page}
+                        </div>
+
+                        <div class="page-count">
+                            ${count} visits
+                        </div>
+
+                    </div>
+                `
+            )
+            .join("");
+
+}
+
+loadAnalytics();
+
+setInterval(
+    loadAnalytics,
+    30000
+);
 
 </script>
 

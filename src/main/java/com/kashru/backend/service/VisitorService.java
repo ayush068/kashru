@@ -4,7 +4,11 @@ import com.kashru.backend.entity.Visitor;
 import com.kashru.backend.repository.VisitorRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class VisitorService {
@@ -15,6 +19,7 @@ public class VisitorService {
         this.visitorRepository = visitorRepository;
     }
 
+    // Track / update visitor
     public Visitor trackVisitor(
             String sessionId,
             String pageUrl,
@@ -36,6 +41,8 @@ public class VisitorService {
         return visitorRepository.save(visitor);
     }
 
+
+    // Live visitors - active in last 5 minutes
     public long getLiveVisitorCount() {
 
         LocalDateTime activeSince =
@@ -43,5 +50,68 @@ public class VisitorService {
 
         return visitorRepository
                 .countByLastSeenAfter(activeSince);
+    }
+
+
+    // Today's visitors
+    public long getTodayVisitorCount() {
+
+        LocalDateTime startOfToday =
+                LocalDate.now().atStartOfDay();
+
+        return visitorRepository
+                .countByCreatedAtAfter(startOfToday);
+    }
+
+
+    // Today's page views
+    public long getTodayPageViews() {
+
+        LocalDateTime startOfToday =
+                LocalDate.now().atStartOfDay();
+
+        return visitorRepository
+                .countByCreatedAtAfter(startOfToday);
+    }
+
+
+    // Total visitors
+    public long getTotalVisitors() {
+
+        return visitorRepository.count();
+    }
+
+
+    // Most visited pages today
+    public Map<String, Long> getMostVisitedPages() {
+
+        LocalDateTime startOfToday =
+                LocalDate.now().atStartOfDay();
+
+        List<Visitor> visitors =
+                visitorRepository
+                        .findByCreatedAtAfterOrderByCreatedAtDesc(
+                                startOfToday
+                        );
+
+        Map<String, Long> pageCounts =
+                new LinkedHashMap<>();
+
+        for (Visitor visitor : visitors) {
+
+            String page =
+                    visitor.getPageUrl();
+
+            if (page == null || page.isBlank()) {
+                page = "/";
+            }
+
+            pageCounts.put(
+                    page,
+                    pageCounts.getOrDefault(page, 0L) + 1
+            );
+        }
+
+        return pageCounts;
     }
 }

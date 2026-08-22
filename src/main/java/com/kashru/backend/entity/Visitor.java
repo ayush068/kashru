@@ -33,11 +33,19 @@ public class Visitor {
     private String city;
 
     @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    @Column(nullable = false)
     private LocalDateTime lastSeen;
 
     @PrePersist
     public void onCreate() {
-        lastSeen = LocalDateTime.now();
+
+        LocalDateTime now =
+                LocalDateTime.now();
+
+        createdAt = now;
+        lastSeen = now;
     }
 
     public Visitor() {
@@ -101,6 +109,10 @@ public class Visitor {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
     public LocalDateTime getLastSeen() {
