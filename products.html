@@ -1,30 +1,751 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Products | Kashru Technologies</title><meta name="description" content="Kashru Technologies - professional digital solutions, software and technology services."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png">
-<link rel="icon" type="image/png" sizes="180x180" href="assets/favicon-180.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
-</head><body><header>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Products | Kashru Technologies</title>
+
+    <meta
+        name="description"
+        content="Kashru Technologies - professional digital solutions, software and technology services."
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="512x512"
+        href="assets/favicon.png"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="180x180"
+        href="assets/favicon-180.png"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="assets/favicon-180.png"
+    >
+
+    <style>
+
+        .dynamic-products {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(280px, 1fr)
+            );
+            gap: 25px;
+        }
+
+
+        .dynamic-product-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,.08);
+            transition: transform .2s ease,
+                        box-shadow .2s ease;
+        }
+
+
+        .dynamic-product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.12);
+        }
+
+
+        .dynamic-product-image {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+            background: #f3f4f6;
+        }
+
+
+        .dynamic-product-placeholder {
+            width: 100%;
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3f4f6;
+            font-size: 55px;
+            color: #0B3A82;
+        }
+
+
+        .dynamic-product-body {
+            padding: 24px;
+        }
+
+
+        .dynamic-product-category {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #0B3A82;
+            background: #eef4ff;
+            padding: 6px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+
+        .dynamic-product-body h3 {
+            margin-bottom: 10px;
+        }
+
+
+        .dynamic-product-body p {
+            color: #667085;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+
+        .dynamic-product-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0B3A82;
+            margin-bottom: 18px;
+        }
+
+
+        .products-loading,
+        .products-empty,
+        .products-error {
+            text-align: center;
+            padding: 50px 20px;
+            color: #667085;
+            grid-column: 1 / -1;
+        }
+
+
+        .products-error {
+            color: #B42318;
+        }
+
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
 <nav>
-<a class="logo" href="index.html"><img src="assets/favicon-180.png" alt="Kashru Technologies" style="width:34px;height:34px;object-fit:cover;border-radius:50%;vertical-align:middle;margin-right:8px">Kashru <small>TECHNOLOGIES</small></a>
+
+<a
+    class="logo"
+    href="index.html"
+>
+
+    <img
+        src="assets/favicon-180.png"
+        alt="Kashru Technologies"
+        style="
+            width:34px;
+            height:34px;
+            object-fit:cover;
+            border-radius:50%;
+            vertical-align:middle;
+            margin-right:8px
+        "
+    >
+
+    Kashru
+
+    <small>
+        TECHNOLOGIES
+    </small>
+
+</a>
+
+
 <ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="services.html">Services</a></li>
-<li><a class="active" href="products.html">Products</a></li>
-<li><a href="projects.html">Projects</a></li>
-<li><a href="technologies.html">Technologies</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
+
+    <li>
+        <a href="index.html">
+            Home
+        </a>
+    </li>
+
+    <li>
+        <a href="services.html">
+            Services
+        </a>
+    </li>
+
+    <li>
+        <a
+            class="active"
+            href="products.html"
+        >
+            Products
+        </a>
+    </li>
+
+    <li>
+        <a href="projects.html">
+            Projects
+        </a>
+    </li>
+
+    <li>
+        <a href="technologies.html">
+            Technologies
+        </a>
+    </li>
+
+    <li>
+        <a href="about.html">
+            About
+        </a>
+    </li>
+
+    <li>
+        <a href="contact.html">
+            Contact
+        </a>
+    </li>
+
 </ul>
-<a class="cta" href="contact.html">Let's Talk</a>
-<button class="menu" id="menu">☰</button>
+
+
+<a
+    class="cta"
+    href="contact.html"
+>
+    Let's Talk
+</a>
+
+
+<button
+    class="menu"
+    id="menu"
+>
+    ☰
+</button>
+
 </nav>
-</header><section class="page-hero"><div class="container"><div class="kicker" style="color:#FFB62E">Products & Platforms</div><h1>Solutions you can build on.</h1><p>Custom platforms designed around business workflows and customer needs.</p></div></section><section class="section products"><div class="cards"><div class="card"><div class="product-img">◫</div><div class="product-body"><h3>Business ERP</h3><p>Centralize operations, users, workflows and reports in one platform.</p><a class="btn primary" href="contact.html">Discuss a solution</a></div></div><div class="card"><div class="product-img">◎</div><div class="product-body"><h3>CRM & Sales</h3><p>Manage leads, customers, sales activities and performance.</p><a class="btn primary" href="contact.html">Discuss a solution</a></div></div><div class="card"><div class="product-img">▤</div><div class="product-body"><h3>Custom Platforms</h3><p>Purpose-built software tailored to your processes and industry.</p><a class="btn primary" href="contact.html">Build your platform</a></div></div></div></section><footer>
+
+</header>
+
+
+<section class="page-hero">
+
+<div class="container">
+
+    <div
+        class="kicker"
+        style="color:#FFB62E"
+    >
+        Products & Platforms
+    </div>
+
+
+    <h1>
+        Solutions you can build on.
+    </h1>
+
+
+    <p>
+        Custom platforms designed around business workflows and customer needs.
+    </p>
+
+</div>
+
+</section>
+
+
+<section class="section products">
+
+<div
+    class="dynamic-products"
+    id="productsContainer"
+>
+
+    <div class="products-loading">
+        Loading products...
+    </div>
+
+</div>
+
+</section>
+
+
+<footer>
+
 <div class="footer">
-<div><b>Kashru Technologies</b><div style="color:#718096;font-size:11px">Digital solutions for modern business.</div></div>
+
 <div>
-<a href="services.html">Services</a><a href="products.html">Products</a><a href="projects.html">Projects</a><a href="technologies.html">Technologies</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+
+    <b>
+        Kashru Technologies
+    </b>
+
+    <div
+        style="
+            color:#718096;
+            font-size:11px
+        "
+    >
+        Digital solutions for modern business.
+    </div>
+
 </div>
+
+
+<div>
+
+    <a href="services.html">
+        Services
+    </a>
+
+    <a href="products.html">
+        Products
+    </a>
+
+    <a href="projects.html">
+        Projects
+    </a>
+
+    <a href="technologies.html">
+        Technologies
+    </a>
+
+    <a href="about.html">
+        About
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
+
 </div>
-<p style="max-width:1240px;margin:25px auto 0;color:#718096;font-size:11px">© 2026 Kashru Technologies. All rights reserved.</p>
-</footer><script>
-document.querySelector('.menu')?.addEventListener('click',()=>{const u=document.querySelector('nav ul');u.style.display=u.style.display==='flex'?'':'flex';u.style.position='absolute';u.style.top='74px';u.style.left='0';u.style.right='0';u.style.background='#fff';u.style.flexDirection='column';u.style.padding='18px';u.style.alignItems='center';});
-</script><a class="floating-whatsapp" href="https://wa.me/919806604871?text=Hi%20Kashru%20Technologies%2C%20I%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat with Kashru Technologies on WhatsApp">✆</a>
-</body></html>
+
+</div>
+
+
+<p
+    style="
+        max-width:1240px;
+        margin:25px auto 0;
+        color:#718096;
+        font-size:11px
+    "
+>
+    © 2026 Kashru Technologies. All rights reserved.
+</p>
+
+</footer>
+
+
+<script>
+
+
+// ========================================
+// MOBILE MENU
+// ========================================
+
+document
+    .querySelector('.menu')
+    ?.addEventListener(
+        'click',
+        () => {
+
+            const u =
+                document.querySelector(
+                    'nav ul'
+                );
+
+            u.style.display =
+                u.style.display === 'flex'
+                    ? ''
+                    : 'flex';
+
+            u.style.position =
+                'absolute';
+
+            u.style.top =
+                '74px';
+
+            u.style.left =
+                '0';
+
+            u.style.right =
+                '0';
+
+            u.style.background =
+                '#fff';
+
+            u.style.flexDirection =
+                'column';
+
+            u.style.padding =
+                '18px';
+
+            u.style.alignItems =
+                'center';
+
+        }
+    );
+
+
+// ========================================
+// API
+// ========================================
+
+const API_URL =
+    'https://kashru-backend.onrender.com';
+
+
+// ========================================
+// LOAD PRODUCTS
+// ========================================
+
+async function loadProducts() {
+
+    const container =
+        document.getElementById(
+            'productsContainer'
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/api/products`
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                'Failed to load products'
+            );
+
+        }
+
+
+        const products =
+            await response.json();
+
+
+        // Only show active products
+        const activeProducts =
+            products.filter(
+                product =>
+                    product.active === true
+            );
+
+
+        if (
+            !activeProducts ||
+            activeProducts.length === 0
+        ) {
+
+            container.innerHTML = `
+                <div class="products-empty">
+
+                    <h3>
+                        Products coming soon
+                    </h3>
+
+                    <p>
+                        We are preparing new solutions for you.
+                    </p>
+
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            activeProducts
+                .map(
+                    product =>
+                        createProductCard(
+                            product
+                        )
+                )
+                .join('');
+
+
+    } catch (error) {
+
+        console.error(
+            'Products error:',
+            error
+        );
+
+
+        container.innerHTML = `
+            <div class="products-error">
+
+                <h3>
+                    Unable to load products
+                </h3>
+
+                <p>
+                    Please try again later.
+                </p>
+
+            </div>
+        `;
+
+    }
+
+}
+
+
+// ========================================
+// PRODUCT CARD
+// ========================================
+
+function createProductCard(
+    product
+) {
+
+    const name =
+        escapeHtml(
+            product.name ||
+            'Product'
+        );
+
+
+    const description =
+        escapeHtml(
+            product.description ||
+            'Professional technology solution.'
+        );
+
+
+    const category =
+        escapeHtml(
+            product.category ||
+            'Technology'
+        );
+
+
+    const imageUrl =
+        product.imageUrl
+            ? escapeHtml(
+                product.imageUrl
+            )
+            : '';
+
+
+    const price =
+        Number(
+            product.price || 0
+        );
+
+
+    const priceText =
+        price > 0
+            ? `₹${price.toLocaleString(
+                'en-IN'
+              )}`
+            : '';
+
+
+    const imageHtml =
+        imageUrl
+
+            ?
+
+            `
+            <img
+                src="${imageUrl}"
+                alt="${name}"
+                class="dynamic-product-image"
+                onerror="this.outerHTML='<div class=\\'dynamic-product-placeholder\\'>◫</div>'"
+            >
+            `
+
+            :
+
+            `
+            <div class="dynamic-product-placeholder">
+                ◫
+            </div>
+            `;
+
+
+    return `
+
+        <div class="dynamic-product-card">
+
+            ${imageHtml}
+
+
+            <div class="dynamic-product-body">
+
+                <span class="dynamic-product-category">
+
+                    ${category}
+
+                </span>
+
+
+                <h3>
+
+                    ${name}
+
+                </h3>
+
+
+                <p>
+
+                    ${description}
+
+                </p>
+
+
+                ${
+                    priceText
+
+                    ?
+
+                    `
+                    <div class="dynamic-product-price">
+
+                        ${priceText}
+
+                    </div>
+                    `
+
+                    :
+
+                    ''
+                }
+
+
+                <div class="product-actions">
+
+                    <a
+                        class="btn primary"
+                        href="contact.html"
+                    >
+                        Discuss a solution
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+// ========================================
+// HTML ESCAPE
+// ========================================
+
+function escapeHtml(
+    value
+) {
+
+    return String(value)
+
+        .replaceAll(
+            '&',
+            '&amp;'
+        )
+
+        .replaceAll(
+            '<',
+            '&lt;'
+        )
+
+        .replaceAll(
+            '>',
+            '&gt;'
+        )
+
+        .replaceAll(
+            '"',
+            '&quot;'
+        )
+
+        .replaceAll(
+            "'",
+            '&#039;'
+        );
+
+}
+
+
+// ========================================
+// INITIAL LOAD
+// ========================================
+
+loadProducts();
+
+</script>
+
+
+<a
+    class="floating-whatsapp"
+    href="https://wa.me/919806604871?text=Hi%20Kashru%20Technologies%2C%20I%20want%20to%20discuss%20a%20project."
+    target="_blank"
+    rel="noopener"
+    aria-label="Chat with Kashru Technologies on WhatsApp"
+>
+    ✆
+</a>
+
+
+</body>
+
+</html>
