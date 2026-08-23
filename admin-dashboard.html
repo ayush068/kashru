@@ -2137,69 +2137,176 @@ async function loadLiveVisitors() {
 loadLiveVisitors();
 
 
+async function readApiValue(response) {
+
+    const contentType =
+        response.headers.get("content-type") || "";
+
+    let data;
+
+    try {
+        data = contentType.includes("application/json")
+            ? await response.json()
+            : await response.text();
+    } catch (e) {
+        return {
+            ok: false,
+            value: null,
+            error: "Invalid server response"
+        };
+    }
+
+    if (!response.ok) {
+        let message = "API request failed";
+
+        if (data && typeof data === "object") {
+            message =
+                data.message ||
+                data.error ||
+                `HTTP ${response.status}`;
+        } else if (typeof data === "string" && data.trim()) {
+            message = data;
+        }
+
+        return {
+            ok: false,
+            value: null,
+            error: message
+        };
+    }
+
+    if (typeof data === "number") {
+        return { ok: true, value: data, raw: data };
+    }
+
+    if (typeof data === "string") {
+        const number = Number(data);
+
+        if (!Number.isNaN(number)) {
+            return { ok: true, value: number, raw: data };
+        }
+    }
+
+    if (data && typeof data === "object") {
+
+        const possibleValue =
+            data.count ??
+            data.total ??
+            data.value ??
+            data.visitors ??
+            data.pageViews ??
+            data.pageviews ??
+            data.uniqueVisitors;
+
+        if (typeof possibleValue === "number") {
+            return {
+                ok: true,
+                value: possibleValue,
+                raw: data
+            };
+        }
+
+        if (data.data && typeof data.data === "object") {
+
+            const nested =
+                data.data.count ??
+                data.data.total ??
+                data.data.value ??
+                data.data.visitors ??
+                data.data.pageViews ??
+                data.data.pageviews;
+
+            if (typeof nested === "number") {
+                return {
+                    ok: true,
+                    value: nested,
+                    raw: data
+                };
+            }
+        }
+    }
+
+    return {
+        ok: true,
+        value: data,
+        raw: data
+    };
+}
+
+
 async function loadAnalytics() {
+
+    const endpoints = [
+        `${API_URL}/api/visitors/live`,
+        `${API_URL}/api/visitors/today`,
+        `${API_URL}/api/visitors/today/pageviews`,
+        `${API_URL}/api/visitors/total`,
+        `${API_URL}/api/visitors/most-visited`
+    ];
 
     try {
 
+        const responses = await Promise.all(
+            endpoints.map(url =>
+                fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    cache: "no-store"
+                })
+            )
+        );
+
+        const results = await Promise.all(
+            responses.map(readApiValue)
+        );
+
         const [
-            liveResponse,
-            todayResponse,
-            pageViewsResponse,
-            totalResponse,
-            pagesResponse
-        ] = await Promise.all([
+            liveResult,
+            todayResult,
+            pageViewsResult,
+            totalResult,
+            pagesResult
+        ] = results;
 
-            fetch(`${API_URL}/api/visitors/live`),
+        setAnalyticsValue(
+            "analyticsLiveVisitors",
+            liveResult
+        );
 
-            fetch(`${API_URL}/api/visitors/today`),
+        setAnalyticsValue(
+            "analyticsTodayVisitors",
+            todayResult
+        );
 
-            fetch(`${API_URL}/api/visitors/today/pageviews`),
+        setAnalyticsValue(
+            "analyticsPageViews",
+            pageViewsResult
+        );
 
-            fetch(`${API_URL}/api/visitors/total`),
+        setAnalyticsValue(
+            "analyticsTotalVisitors",
+            totalResult
+        );
 
-            fetch(`${API_URL}/api/visitors/most-visited`)
+        if (pagesResult.ok) {
+            displayMostVisitedPages(pagesResult.value);
+        } else {
+            showAnalyticsError(
+                "mostVisitedPages",
+                pagesResult.error
+            );
+        }
 
-        ]);
-
-
-        const live =
-            await liveResponse.json();
-
-        const today =
-            await todayResponse.json();
-
-        const pageViews =
-            await pageViewsResponse.json();
-
-        const total =
-            await totalResponse.json();
-
-        const pages =
-            await pagesResponse.json();
-
-
-        document.getElementById(
-            "analyticsLiveVisitors"
-        ).textContent = live;
-
-
-        document.getElementById(
-            "analyticsTodayVisitors"
-        ).textContent = today;
-
-
-        document.getElementById(
-            "analyticsPageViews"
-        ).textContent = pageViews;
-
-
-        document.getElementById(
-            "analyticsTotalVisitors"
-        ).textContent = total;
-
-
-        displayMostVisitedPages(pages);
-
+        if (
+            liveResult.ok &&
+            typeof liveResult.value === "number"
+        ) {
+            document.getElementById(
+                "liveVisitorCount"
+            ).textContent = liveResult.value;
+        }
 
     } catch (error) {
 
@@ -2208,8 +2315,79 @@ async function loadAnalytics() {
             error
         );
 
+        showAnalyticsError(
+            "mostVisitedPages",
+            "Unable to load analytics"
+        );
+    }
+}
+
+
+function setAnalyticsValue(elementId, result) {
+
+    const element =
+        document.getElementById(elementId);
+
+    if (!element) {
+        return;
     }
 
+    if (
+        result.ok &&
+        typeof result.value === "number"
+    ) {
+        element.textContent =
+            result.value.toLocaleString();
+
+        element.style.color = "#111827";
+        return;
+    }
+
+    // Never display [object Object].
+    element.textContent = "—";
+    element.style.color = "#9ca3af";
+
+    console.warn(
+        `Analytics ${elementId} failed:`,
+        result.error || result.value
+    );
+}
+
+
+function showAnalyticsError(elementId, message) {
+
+    const container =
+        document.getElementById(elementId);
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="analytics-loading"
+             style="color:#dc2626">
+
+            Unable to load analytics.
+
+            <br>
+
+            <small>
+                ${escapeHtml(message || "Server error")}
+            </small>
+
+        </div>
+    `;
+}
+
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 }
 
 
@@ -2220,28 +2398,74 @@ function displayMostVisitedPages(pages) {
             "mostVisitedPages"
         );
 
+    if (!container) {
+        return;
+    }
 
-    const entries =
-        Object.entries(pages);
+    let entries = [];
 
+    // Format: { "/": 10, "/products.html": 5 }
+    if (
+        pages &&
+        typeof pages === "object" &&
+        !Array.isArray(pages)
+    ) {
+        entries =
+            Object.entries(pages)
+                .filter(
+                    ([page, count]) =>
+                        typeof count === "number"
+                );
+    }
+
+    // Format: [{pageUrl:"/", count:10}]
+    if (Array.isArray(pages)) {
+
+        entries = pages
+            .map(item => {
+
+                if (!item || typeof item !== "object") {
+                    return null;
+                }
+
+                const page =
+                    item.pageUrl ||
+                    item.page ||
+                    item.url ||
+                    item.path;
+
+                const count =
+                    item.count ??
+                    item.visits ??
+                    item.pageViews ??
+                    item.views;
+
+                if (
+                    !page ||
+                    typeof count !== "number"
+                ) {
+                    return null;
+                }
+
+                return [page, count];
+            })
+            .filter(Boolean);
+    }
 
     if (entries.length === 0) {
 
         container.innerHTML = `
             <div class="analytics-loading">
-                No visitor activity yet.
+                No page-view data available yet.
             </div>
         `;
 
         return;
-
     }
-
 
     entries.sort(
         (a, b) => b[1] - a[1]
     );
-
 
     container.innerHTML =
         entries
@@ -2251,19 +2475,20 @@ function displayMostVisitedPages(pages) {
                     <div class="page-row">
 
                         <div class="page-name">
-                            ${page}
+                            ${escapeHtml(page)}
                         </div>
 
                         <div class="page-count">
-                            ${count} visits
+                            ${Number(count).toLocaleString()}
+                            visits
                         </div>
 
                     </div>
                 `
             )
             .join("");
-
 }
+
 
 loadAnalytics();
 
