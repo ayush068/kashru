@@ -84,6 +84,12 @@ public class VisitorService {
         return visitorRepository.count();
     }
 
+    public List<Visitor> getAllVisitors() {
+
+    return visitorRepository
+            .findAllByOrderByLastSeenDesc();
+}
+
     // Most visited pages
     public Map<String, Long> getMostVisitedPages() {
 
@@ -112,6 +118,8 @@ public class VisitorService {
                     pageCounts.getOrDefault(page, 0L) + 1
             );
         }
+
+
 
         return pageCounts;
     }

@@ -23,4 +23,6 @@ public interface VisitorRepository extends JpaRepository<Visitor, Long> {
     List<Visitor> findByCreatedAtAfterOrderByCreatedAtDesc(
             LocalDateTime time
     );
+List<Visitor> findAllByOrderByLastSeenDesc();
+
 }

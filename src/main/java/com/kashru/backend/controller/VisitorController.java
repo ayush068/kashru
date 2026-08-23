@@ -4,6 +4,7 @@ import com.kashru.backend.entity.Visitor;
 import com.kashru.backend.service.VisitorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 import java.util.Map;
 
@@ -86,4 +87,13 @@ public class VisitorController {
                 visitorService.getMostVisitedPages()
         );
     }
+
+    // All visitors
+@GetMapping
+public ResponseEntity<List<Visitor>> getAllVisitors() {
+
+    return ResponseEntity.ok(
+            visitorService.getAllVisitors()
+    );
+}
 }
