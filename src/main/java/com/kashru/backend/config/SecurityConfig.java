@@ -33,7 +33,14 @@ public class SecurityConfig {
     "/",
     "/api/admin/**",
     "/api/contact/**",
-    "/api/products/**"
+    "/api/products/**",
+"/api/visitors/today",
+"/api/visitors/today/pageviews",
+"/api/visitors/live" ,
+"/api/visitors/track",
+"/api/visitors/**",
+
+        "/api/visitors/most-visited"       
 ).permitAll()
                 .anyRequest().permitAll()
             );
