@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Team | Kashru Technologies</title>
+
+<meta name="description"
+content="Meet the team behind Kashru Technologies — software engineers, designers and AI/ML professionals building modern digital solutions.">
+
+<link rel="canonical" href="https://kashru.san-vad.com/team.html">
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="icon"
+type="image/png"
+sizes="512x512"
+href="assets/favicon.png">
+
+<style>
+
+/* =========================
+   TEAM PAGE
+========================= */
+
+.team-hero {
+    padding: 120px 20px 80px;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(37,99,235,.12), transparent 35%),
+        radial-gradient(circle at 85% 30%, rgba(124,58,237,.10), transparent 35%),
+        #f8fafc;
+    text-align: center;
+}
+
+.team-hero-inner {
+    max-width: 850px;
+    margin: auto;
+}
+
+.team-hero h1 {
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.05;
+    margin: 18px 0;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.team-hero h1 span {
+    color: #2563eb;
+}
+
+.team-hero p {
+    max-width: 700px;
+    margin: auto;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #64748b;
+}
+
+
+/* =========================
+   TEAM SECTION
+========================= */
+
+.team-section {
+    padding: 90px 20px;
+    background: #fff;
+}
+
+.team-container {
+    max-width: 1250px;
+    margin: auto;
+}
+
+.team-heading {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.team-heading h2 {
+    font-size: 40px;
+    margin: 12px 0;
+    color: #0f172a;
+}
+
+.team-heading p {
+    color: #64748b;
+}
+
+
+/* =========================
+   TEAM GRID
+========================= */
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+
+/* =========================
+   TEAM CARD
+========================= */
+
+.team-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    padding: 35px 28px;
+    text-align: center;
+    transition: .3s ease;
+    box-shadow: 0 10px 30px rgba(15,23,42,.05);
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(15,23,42,.12);
+}
+
+
+/* Profile */
+
+.team-avatar {
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    margin: 0 auto 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+    font-weight: 800;
+
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    box-shadow: 0 12px 30px rgba(37,99,235,.25);
+}
+
+.team-card h3 {
+    font-size: 24px;
+    margin: 10px 0 6px;
+    color: #0f172a;
+}
+
+.team-role {
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.team-bio {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   SKILLS
+========================= */
+
+.skill-title {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #334155;
+    margin: 20px 0 10px;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+}
+
+.skill {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 6px 10px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   SOCIAL
+========================= */
+
+.team-social {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.team-social a {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f1f5f9;
+    color: #334155;
+
+    text-decoration: none;
+    font-size: 13px;
+
+    transition: .25s;
+}
+
+.team-social a:hover {
+    background: #2563eb;
+    color: white;
+}
+
+
+/* =========================
+   CULTURE
+========================= */
+
+.team-culture {
+    padding: 90px 20px;
+    background: #f8fafc;
+}
+
+.culture-container {
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+}
+
+.culture-container h2 {
+    font-size: 40px;
+    color: #0f172a;
+    margin: 15px 0;
+}
+
+.culture-container > p {
+    max-width: 700px;
+    margin: auto;
+    color: #64748b;
+    line-height: 1.8;
+}
+
+.culture-grid {
+    margin-top: 45px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.culture-box {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.culture-box h3 {
+    margin: 12px 0;
+    color: #0f172a;
+}
+
+.culture-box p {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.team-cta {
+    padding: 90px 20px;
+    text-align: center;
+
+    background: #0f172a;
+    color: white;
+}
+
+.team-cta h2 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.team-cta p {
+    color: #cbd5e1;
+    max-width: 650px;
+    margin: 0 auto 30px;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .team-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .culture-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .team-hero {
+        padding: 90px 20px 60px;
+    }
+
+    .team-heading h2,
+    .culture-container h2 {
+        font-size: 32px;
+    }
+
+    .team-cta h2 {
+        font-size: 32px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+<nav>
+
+<a class="logo" href="index.html">
+
+<img src="assets/favicon-180.png"
+alt="Kashru Technologies">
+
+<span>
+Kashru
+<small>TECHNOLOGIES</small>
+</span>
+
+</a>
+
+
+<ul>
+
+<li>
+<a href="index.html">Home</a>
+</li>
+
+<li>
+<a href="services.html">Services</a>
+</li>
+
+<li>
+<a href="products.html">Products</a>
+</li>
+
+<li>
+<a href="projects.html">Projects</a>
+</li>
+
+<li>
+<a href="technologies.html">Technologies</a>
+</li>
+
+<li>
+<a class="active" href="team.html">Team</a>
+</li>
+
+<li>
+<a href="about.html">About</a>
+</li>
+
+<li>
+<a href="contact.html">Contact</a>
+</li>
+
+</ul>
+
+
+<a class="cta" href="contact.html">
+Let's Talk
+</a>
+
+<button class="menu" id="menu">
+☰
+</button>
+
+</nav>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="team-hero">
+
+<div class="team-hero-inner">
+
+<div class="kicker">
+THE PEOPLE BEHIND KASHRU
+</div>
+
+<h1>
+Meet Our <span>Team.</span>
+</h1>
+
+<p>
+A multidisciplinary team combining software engineering,
+creative design and artificial intelligence to build
+digital products that solve real business problems.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     TEAM
+========================= -->
+
+<section class="team-section">
+
+<div class="team-container">
+
+<div class="team-heading">
+
+<div class="kicker">
+OUR TEAM
+</div>
+
+<h2>
+People who build the future.
+</h2>
+
+<p>
+Engineering, design and AI working together under one vision.
+</p>
+
+</div>
+
+
+
+<div class="team-grid">
+
+
+<!-- =========================
+     AYUSH
+========================= -->
+
+<div class="team-card">
+
+<div class="team-avatar">
+AN
+</div>
+
+<h3>
+Ayush Nema
+</h3>
+
+<div class="team-role">
+Founder & CEO
+</div>
+
+<p class="team-bio">
+
+Founder and CEO of Kashru Technologies,
+focused on building scalable software products,
+modern digital solutions and technology-driven
+business solutions.
+
+</p>
+
+
+<div class="skill-title">
+Software Engineering
+</div>
+
+<div class="skills">
+
+<span class="skill">Java</span>
+<span class="skill">Spring Boot</span>
+<span class="skill">Spring MVC</span>
+<span class="skill">Hibernate</span>
+<span class="skill">JPA</span>
+<span class="skill">React</span>
+<span class="skill">Angular</span>
+<span class="skill">Node.js</span>
+<span class="skill">Python</span>
+<span class="skill">SQL</span>
+<span class="skill">REST APIs</span>
+<span class="skill">Microservices</span>
+<span class="skill">J2EE</span>
+<span class="skill">HTML</span>
+<span class="skill">CSS</span>
+<span class="skill">Git</span>
+
+</div>
+
+
+<div class="skill-title">
+Cloud & Database
+</div>
+
+<div class="skills">
+
+<span class="skill">AWS</span>
+<span class="skill">MySQL</span>
+<span class="skill">Oracle</span>
+<span class="skill">SQL Server</span>
+<span class="skill">Cloud Solutions</span>
+
+</div>
+
+
+<div class="team-social">
+
+<a href="#" aria-label="LinkedIn">
+in
+</a>
+
+<a href="#" aria-label="GitHub">
+GH
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     VISHAS
+========================= -->
+
+<div class="team-card">
+
+<div class="team-avatar">
+V
+</div>
+
+<h3>
+Vishas
+</h3>
+
+<div class="team-role">
+UI/UX Designer & Graphic Designer
+</div>
+
+<p class="team-bio">
+
+Creative designer focused on creating intuitive,
+beautiful and user-centered digital experiences
+across web, mobile applications and brand identity.
+
+</p>
+
+
+<div class="skill-title">
+UI / UX Design
+</div>
+
+<div class="skills">
+
+<span class="skill">UI Design</span>
+<span class="skill">UX Design</span>
+<span class="skill">User Research</span>
+<span class="skill">Wireframing</span>
+<span class="skill">Prototyping</span>
+<span class="skill">User Flows</span>
+<span class="skill">Design Systems</span>
+<span class="skill">Interaction Design</span>
+<span class="skill">Responsive Design</span>
+<span class="skill">Mobile App Design</span>
+<span class="skill">Web Design</span>
+<span class="skill">Usability Testing</span>
+<span class="skill">Accessibility</span>
+
+</div>
+
+
+<div class="skill-title">
+Graphic Design
+</div>
+
+<div class="skills">
+
+<span class="skill">Brand Identity</span>
+<span class="skill">Logo Design</span>
+<span class="skill">Social Media Design</span>
+<span class="skill">Poster Design</span>
+<span class="skill">Banner Design</span>
+<span class="skill">Brochure Design</span>
+<span class="skill">Packaging</span>
+<span class="skill">Typography</span>
+<span class="skill">Color Theory</span>
+
+</div>
+
+
+<div class="skill-title">
+Design Tools
+</div>
+
+<div class="skills">
+
+<span class="skill">Figma</span>
+<span class="skill">FigJam</span>
+<span class="skill">Adobe Illustrator</span>
+<span class="skill">Adobe Photoshop</span>
+<span class="skill">Canva</span>
+<span class="skill">Adobe XD</span>
+
+</div>
+
+
+<div class="skill-title">
+Research & Strategy
+</div>
+
+<div class="skills">
+
+<span class="skill">Competitor Analysis</span>
+<span class="skill">User Persona</span>
+<span class="skill">Empathy Mapping</span>
+<span class="skill">Customer Journey</span>
+<span class="skill">Design Thinking</span>
+<span class="skill">Ideation</span>
+
+</div>
+
+
+<div class="team-social">
+
+<a href="#" aria-label="LinkedIn">
+in
+</a>
+
+<a href="#" aria-label="Portfolio">
+↗
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     PRIYANKA
+========================= -->
+
+<div class="team-card">
+
+<div class="team-avatar">
+P
+</div>
+
+<h3>
+Priyanka
+</h3>
+
+<div class="team-role">
+AI / ML Engineer
+</div>
+
+<p class="team-bio">
+
+AI/ML professional working on intelligent applications,
+machine learning systems, generative AI, NLP and
+LLM-powered solutions.
+
+</p>
+
+
+<div class="skill-title">
+AI & Machine Learning
+</div>
+
+<div class="skills">
+
+<span class="skill">Machine Learning</span>
+<span class="skill">Deep Learning</span>
+<span class="skill">NLP</span>
+<span class="skill">Computer Vision</span>
+<span class="skill">Generative AI</span>
+<span class="skill">RAG</span>
+<span class="skill">LLM Integration</span>
+<span class="skill">Transfer Learning</span>
+<span class="skill">Prompt Engineering</span>
+<span class="skill">Feature Engineering</span>
+
+</div>
+
+
+<div class="skill-title">
+Frameworks & Libraries
+</div>
+
+<div class="skills">
+
+<span class="skill">TensorFlow</span>
+<span class="skill">PyTorch</span>
+<span class="skill">Scikit-learn</span>
+<span class="skill">LangChain</span>
+<span class="skill">OpenCV</span>
+<span class="skill">MediaPipe</span>
+<span class="skill">Pandas</span>
+<span class="skill">NumPy</span>
+<span class="skill">Flask</span>
+
+</div>
+
+
+<div class="skill-title">
+Vector Search & Cloud
+</div>
+
+<div class="skills">
+
+<span class="skill">FAISS</span>
+<span class="skill">Vector Embeddings</span>
+<span class="skill">Semantic Search</span>
+<span class="skill">REST APIs</span>
+<span class="skill">Docker</span>
+<span class="skill">CI/CD</span>
+<span class="skill">GitHub Actions</span>
+<span class="skill">Hugging Face</span>
+<span class="skill">Google Colab</span>
+
+</div>
+
+
+<div class="team-social">
+
+<a href="#" aria-label="LinkedIn">
+in
+</a>
+
+<a href="#" aria-label="GitHub">
+GH
+</a>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     CULTURE
+========================= -->
+
+<section class="team-culture">
+
+<div class="culture-container">
+
+<div class="kicker">
+HOW WE WORK
+</div>
+
+<h2>
+Different skills. One vision.
+</h2>
+
+<p>
+At Kashru Technologies, engineering, design and AI come
+together to create technology that is useful, scalable
+and built around real user needs.
+</p>
+
+
+<div class="culture-grid">
+
+<div class="culture-box">
+
+<div class="icon">
+⚡
+</div>
+
+<h3>
+Innovation
+</h3>
+
+<p>
+We explore modern technologies and turn ideas into
+practical digital solutions.
+</p>
+
+</div>
+
+
+<div class="culture-box">
+
+<div class="icon">
+◈
+</div>
+
+<h3>
+Collaboration
+</h3>
+
+<p>
+Developers, designers and AI professionals work
+together throughout the product journey.
+</p>
+
+</div>
+
+
+<div class="culture-box">
+
+<div class="icon">
+🚀
+</div>
+
+<h3>
+Growth
+</h3>
+
+<p>
+We continuously improve our products, skills and
+solutions to create long-term value.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="team-cta">
+
+<h2>
+Let's build something great.
+</h2>
+
+<p>
+Have an idea, business challenge or product you want
+to build? Let's turn it into a real digital solution.
+</p>
+
+<a class="btn primary" href="contact.html">
+Start a Conversation
+</a>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="footer">
+
+<div>
+
+<b>
+Kashru Technologies
+</b>
+
+<div style="color:#718096;font-size:11px">
+Digital solutions for modern business.
+</div>
+
+</div>
+
+
+<div>
+
+<a href="services.html">Services</a>
+<a href="products.html">Products</a>
+<a href="projects.html">Projects</a>
+<a href="technologies.html">Technologies</a>
+<a href="team.html">Team</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+
+</div>
+
+</div>
+
+
+<p style="max-width:1240px;margin:25px auto 0;color:#718096;font-size:11px">
+
+© 2026 Kashru Technologies. All rights reserved.
+
+</p>
+
+</footer>
+
+
+
+<script>
+
+document.querySelector('.menu')?.addEventListener(
+    'click',
+    () => {
+
+        const u =
+            document.querySelector('nav ul');
+
+        u.style.display =
+            u.style.display === 'flex'
+                ? ''
+                : 'flex';
+
+        u.style.position = 'absolute';
+        u.style.top = '74px';
+        u.style.left = '0';
+        u.style.right = '0';
+        u.style.background = '#fff';
+        u.style.flexDirection = 'column';
+        u.style.padding = '18px';
+        u.style.alignItems = 'center';
+
+    }
+);
+
+</script>
+
+
+<a
+class="floating-whatsapp"
+href="https://wa.me/919806604871?text=Hi%20Kashru%20Technologies%2C%20I%20want%20to%20discuss%20a%20project."
+target="_blank"
+rel="noopener"
+aria-label="Chat with Kashru Technologies on WhatsApp">
+
+✆
+
+</a>
+
+
+</body>
+
+</html>
