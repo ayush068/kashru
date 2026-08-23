@@ -1,9 +1,15 @@
 const VISITOR_API =
     "https://kashru-backend.onrender.com/api/visitors";
 
+
+// ===============================
+// SESSION ID
+// ===============================
+
 function getSessionId() {
 
-    let sessionId = sessionStorage.getItem("kashru_session_id");
+    let sessionId =
+        localStorage.getItem("kashru_visitor_session");
 
     if (!sessionId) {
 
@@ -15,8 +21,8 @@ function getSessionId() {
                 .toString(36)
                 .substring(2, 12);
 
-        sessionStorage.setItem(
-            "kashru_session_id",
+        localStorage.setItem(
+            "kashru_visitor_session",
             sessionId
         );
     }
@@ -24,6 +30,10 @@ function getSessionId() {
     return sessionId;
 }
 
+
+// ===============================
+// DEVICE
+// ===============================
 
 function detectDevice() {
 
@@ -40,6 +50,10 @@ function detectDevice() {
     return "Desktop";
 }
 
+
+// ===============================
+// BROWSER
+// ===============================
 
 function detectBrowser() {
 
@@ -65,31 +79,92 @@ function detectBrowser() {
 }
 
 
+// ===============================
+// GET LOCATION
+// ===============================
+
+async function getLocation() {
+
+    try {
+
+        const response =
+            await fetch("https://ipapi.co/json/");
+
+        if (!response.ok) {
+            throw new Error(
+                "Location API failed: " +
+                response.status
+            );
+        }
+
+        const data =
+            await response.json();
+
+        return {
+
+            country:
+                data.country_name || "",
+
+            city:
+                data.city || ""
+
+        };
+
+    } catch (error) {
+
+        console.error(
+            "Location detection failed:",
+            error
+        );
+
+        return {
+            country: "",
+            city: ""
+        };
+    }
+}
+
+
+// ===============================
+// TRACK VISITOR
+// ===============================
+
 async function trackVisitor() {
 
     try {
 
-        const params = new URLSearchParams();
+        // Get country and city
+        const location =
+            await getLocation();
+
+
+        const params =
+            new URLSearchParams();
+
 
         params.append(
             "sessionId",
             getSessionId()
         );
 
+
         params.append(
             "pageUrl",
             window.location.pathname
         );
+
 
         params.append(
             "pageTitle",
             document.title
         );
 
+
         params.append(
             "device",
             detectDevice()
         );
+
 
         params.append(
             "browser",
@@ -97,12 +172,26 @@ async function trackVisitor() {
         );
 
 
-        const response = await fetch(
-            `${VISITOR_API}/track?${params.toString()}`,
-            {
-                method: "POST"
-            }
+        // Location
+        params.append(
+            "country",
+            location.country
         );
+
+
+        params.append(
+            "city",
+            location.city
+        );
+
+
+        const response =
+            await fetch(
+                `${VISITOR_API}/track?${params.toString()}`,
+                {
+                    method: "POST"
+                }
+            );
 
 
         if (!response.ok) {
@@ -116,7 +205,11 @@ async function trackVisitor() {
 
             console.log(
                 "Visitor tracked:",
-                window.location.pathname
+                {
+                    page: window.location.pathname,
+                    country: location.country,
+                    city: location.city
+                }
             );
 
         }
@@ -132,11 +225,17 @@ async function trackVisitor() {
 }
 
 
-// Track immediately
+// ===============================
+// INITIAL TRACKING
+// ===============================
+
 trackVisitor();
 
 
-// Heartbeat every 1 minute
+// ===============================
+// HEARTBEAT - EVERY 1 MINUTE
+// ===============================
+
 setInterval(
     trackVisitor,
     60 * 1000

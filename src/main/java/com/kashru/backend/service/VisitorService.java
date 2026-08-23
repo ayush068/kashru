@@ -19,12 +19,15 @@ public class VisitorService {
         this.visitorRepository = visitorRepository;
     }
 
+    // Track / update visitor
     public Visitor trackVisitor(
             String sessionId,
             String pageUrl,
             String pageTitle,
             String device,
-            String browser) {
+            String browser,
+            String country,
+            String city) {
 
         Visitor visitor = visitorRepository
                 .findBySessionId(sessionId)
@@ -35,11 +38,17 @@ public class VisitorService {
         visitor.setPageTitle(pageTitle);
         visitor.setDevice(device);
         visitor.setBrowser(browser);
+
+        // Location
+        visitor.setCountry(country);
+        visitor.setCity(city);
+
         visitor.setLastSeen(LocalDateTime.now());
 
         return visitorRepository.save(visitor);
     }
 
+    // Live visitors
     public long getLiveVisitorCount() {
 
         LocalDateTime activeSince =
@@ -49,6 +58,7 @@ public class VisitorService {
                 .countByLastSeenAfter(activeSince);
     }
 
+    // Today's visitors
     public long getTodayVisitorCount() {
 
         LocalDateTime startOfToday =
@@ -58,6 +68,7 @@ public class VisitorService {
                 .countByCreatedAtAfter(startOfToday);
     }
 
+    // Today's page views
     public long getTodayPageViews() {
 
         LocalDateTime startOfToday =
@@ -67,10 +78,13 @@ public class VisitorService {
                 .countByCreatedAtAfter(startOfToday);
     }
 
+    // Total visitors
     public long getTotalVisitors() {
+
         return visitorRepository.count();
     }
 
+    // Most visited pages
     public Map<String, Long> getMostVisitedPages() {
 
         LocalDateTime startOfToday =

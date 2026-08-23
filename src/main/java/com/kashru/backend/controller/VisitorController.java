@@ -25,7 +25,9 @@ public class VisitorController {
             @RequestParam(required = false) String pageUrl,
             @RequestParam(required = false) String pageTitle,
             @RequestParam(required = false) String device,
-            @RequestParam(required = false) String browser) {
+            @RequestParam(required = false) String browser,
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) String city) {
 
         return ResponseEntity.ok(
                 visitorService.trackVisitor(
@@ -33,7 +35,9 @@ public class VisitorController {
                         pageUrl,
                         pageTitle,
                         device,
-                        browser
+                        browser,
+                        country,
+                        city
                 )
         );
     }
