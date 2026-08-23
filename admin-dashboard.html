@@ -1726,6 +1726,28 @@
 
         </div>
 
+        <div
+    class="menu-item"
+    onclick="openVisitors()"
+>
+    <div class="menu-icon">
+        👥
+    </div>
+
+    <h3>
+        Visitor Details
+    </h3>
+
+    <p>
+        View visitors, locations, devices,
+        browsers and page activity.
+    </p>
+
+    <span class="arrow">
+        →
+    </span>
+</div>
+
     </div>
 
 
@@ -2497,8 +2519,14 @@ setInterval(
     30000
 );
 
+function openVisitors() {
+    window.location.href = "admin-visitors.html";
+}
+
 </script>
 <script src="visitor-tracker.js"></script>
+
+
 
 
 </body>
