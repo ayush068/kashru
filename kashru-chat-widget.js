@@ -9,7 +9,7 @@
 
     const API_URL =
         currentScript?.dataset.apiUrl ||
-        "https://kashru-backend.onrender.com/api/v1/chat";
+        "https://kashru-chatbot.onrender.com/api/v1/chat";
 
     const BRAND =
         currentScript?.dataset.brand ||
