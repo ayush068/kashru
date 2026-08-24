@@ -5,7 +5,6 @@ Run locally with: ``uvicorn app.main:app --reload``
 
 from contextlib import asynccontextmanager
 import logging
-import time
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,34 +12,34 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.chat import router as chat_router
 from app.core.config import get_settings
 from app.core.logging import setup_logging
-from app.services.llm_service import get_chat_service
 
 logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    """Warm up heavy singletons (embeddings + FAISS) before serving traffic.
+    """Keep startup lightweight for Render.
 
-    Moving model and index loading into startup keeps the first user
-    request from paying the cold-start cost.
+    Heavy embedding and FAISS initialization is intentionally not performed
+    during application startup. The chatbot service will be initialized
+    lazily when the first chat request arrives.
     """
-    started = time.perf_counter()
-    service = get_chat_service()
-    service.retrieval.embed_query("startup warm-up")
-    logger.info(
-        "Chatbot warmed up (embeddings + FAISS index loaded) in %.0fms",
-        (time.perf_counter() - started) * 1000,
-    )
+    logger.info("Kashru Chatbot API starting...")
     yield
+    logger.info("Kashru Chatbot API shutting down...")
 
 
 def create_app() -> FastAPI:
-    """Build the configured FastAPI app: CORS, routes, startup warm-up."""
+    """Build the configured FastAPI application."""
+
     setup_logging()
     settings = get_settings()
 
-    app = FastAPI(title="Kashru Chatbot API", version="1.0.0", lifespan=lifespan)
+    app = FastAPI(
+        title="Kashru Chatbot API",
+        version="1.0.0",
+        lifespan=lifespan,
+    )
 
     app.add_middleware(
         CORSMiddleware,
@@ -55,7 +54,7 @@ def create_app() -> FastAPI:
 
     @app.get("/health", tags=["health"])
     def health():
-        """Liveness probe used by uptime checks."""
+        """Liveness probe used by Render."""
         return {"ok": True}
 
     return app
