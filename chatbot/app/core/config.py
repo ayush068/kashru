@@ -10,8 +10,7 @@ class Settings(BaseSettings):
     """Environment-driven configuration for the chatbot API.
 
     Every field maps to an upper-case environment variable of the same
-    name (e.g. ``groq_model`` <- ``GROQ_MODEL``) and falls back to the
-    default shown here when the variable is absent.
+    name and falls back to the default shown here when the variable is absent.
     """
 
     model_config = SettingsConfigDict(
@@ -26,9 +25,12 @@ class Settings(BaseSettings):
     groq_model: str = "openai/gpt-oss-20b"
     gemini_model: str = "gemini-3.7-flash"
 
-    embedding_model_name: str = "sentence-transformers/all-MiniLM-L6-v2"
-    knowledge_dir: Path = Path("knowledge")
-    faiss_index_dir: Path = Path("storage/faiss_index")
+    # Gemini API embeddings.
+    # This avoids loading sentence-transformers / torch locally.
+    embedding_model_name: str = "gemini-embedding-001"              
+
+    knowledge_dir: Path = Path("chatbot/knowledge")
+    faiss_index_dir: Path = Path("chatbot/storage/faiss_index") 
 
     # Comma-separated list; browsers send Origin "null" for pages opened
     # directly via file://, 5500 is the common Live Server dev port.

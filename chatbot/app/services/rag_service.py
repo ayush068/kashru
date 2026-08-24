@@ -1,4 +1,4 @@
-"""FAISS-backed retrieval: embeddings, index build/load, and query search."""
+"""Gemini-embeddings + FAISS-backed retrieval."""
 
 import logging
 import time
@@ -8,7 +8,7 @@ from pathlib import Path
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from app.core.config import Settings
@@ -29,14 +29,26 @@ class RetrievalResult:
     doc_count: int = 0
 
 
-def get_embeddings(settings: Settings) -> HuggingFaceEmbeddings:
-    """Create the local HuggingFace sentence-transformer embeddings model."""
-    return HuggingFaceEmbeddings(model_name=settings.embedding_model_name)
+def get_embeddings(settings: Settings) -> GoogleGenerativeAIEmbeddings:
+    """Create Gemini API embeddings.
+
+    The embedding model runs through Google's API instead of loading a
+    local sentence-transformer / PyTorch model. This keeps Render memory
+    usage low.
+    """
+    if not settings.gemini_api_key:
+        raise ValueError("GEMINI_API_KEY is required for embeddings")
+
+    return GoogleGenerativeAIEmbeddings(
+        model=settings.embedding_model_name,
+        google_api_key=settings.gemini_api_key,
+    )
 
 
 def load_knowledge_documents(knowledge_dir: Path) -> list[Document]:
     """Load all supported (.txt/.md) knowledge files from a directory."""
     documents: list[Document] = []
+
     for glob_pattern in SUPPORTED_GLOBS:
         loader = DirectoryLoader(
             str(knowledge_dir),
@@ -46,6 +58,7 @@ def load_knowledge_documents(knowledge_dir: Path) -> list[Document]:
             show_progress=True,
         )
         documents.extend(loader.load())
+
     return documents
 
 
@@ -55,9 +68,12 @@ def build_faiss_index(settings: Settings) -> int:
     Returns the number of chunks written.
     """
     if not settings.knowledge_dir.exists():
-        raise FileNotFoundError(f"Knowledge folder not found: {settings.knowledge_dir}")
+        raise FileNotFoundError(
+            f"Knowledge folder not found: {settings.knowledge_dir}"
+        )
 
     documents = load_knowledge_documents(settings.knowledge_dir)
+
     if not documents:
         raise ValueError(
             f"No .txt or .md knowledge files found in {settings.knowledge_dir}"
@@ -66,21 +82,51 @@ def build_faiss_index(settings: Settings) -> int:
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=700,
         chunk_overlap=120,
-        separators=["\n## ", "\n### ", "\n\n", "\n", ". ", " "],
+        separators=[
+            "\n## ",
+            "\n### ",
+            "\n\n",
+            "\n",
+            ". ",
+            " ",
+        ],
     )
-    chunks = splitter.split_documents(documents)
-    vectorstore = FAISS.from_documents(chunks, get_embeddings(settings))
 
-    settings.faiss_index_dir.mkdir(parents=True, exist_ok=True)
-    vectorstore.save_local(str(settings.faiss_index_dir))
+    chunks = splitter.split_documents(documents)
+
+    embeddings = get_embeddings(settings)
+
+    vectorstore = FAISS.from_documents(
+        chunks,
+        embeddings,
+    )
+
+    settings.faiss_index_dir.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    vectorstore.save_local(
+        str(settings.faiss_index_dir)
+    )
+
+    logger.info(
+        "FAISS index built successfully: chunks=%s model=%s",
+        len(chunks),
+        settings.embedding_model_name,
+    )
+
     return len(chunks)
 
 
-def load_faiss_index(settings: Settings, embeddings=None) -> FAISS:
+def load_faiss_index(
+    settings: Settings,
+    embeddings=None,
+) -> FAISS:
     """Load a previously built FAISS index from disk.
 
-    ``embeddings`` may be supplied to reuse an already-initialized model;
-    otherwise one is created here.
+    ``embeddings`` may be supplied to reuse an already initialized
+    embedding client; otherwise one is created here.
     """
     if not settings.faiss_index_dir.exists():
         raise FileNotFoundError(
@@ -96,17 +142,20 @@ def load_faiss_index(settings: Settings, embeddings=None) -> FAISS:
 
 
 class RetrievalService:
-    """Owns the embeddings model and FAISS index; answers similarity queries.
-
-    Initialized once at application startup; each ``retrieve`` call is
-    instrumented with separate embedding-lookup and FAISS-search timings.
-    """
+    """Owns the Gemini embedding client and FAISS index."""
 
     def __init__(self, settings: Settings):
         self.settings = settings
+
         started = time.perf_counter()
+
         self.embeddings = get_embeddings(settings)
-        self.vectorstore = load_faiss_index(settings, embeddings=self.embeddings)
+
+        self.vectorstore = load_faiss_index(
+            settings,
+            embeddings=self.embeddings,
+        )
+
         logger.info(
             "RAG initialized: model=%s chunks=%s init_ms=%.0f",
             settings.embedding_model_name,
@@ -115,29 +164,52 @@ class RetrievalService:
         )
 
     def embed_query(self, query: str) -> list[float]:
-        """Embed a single query string (also used for startup warm-up)."""
+        """Embed a single query string."""
         return self.embeddings.embed_query(query)
 
-    def retrieve(self, query: str, k: int = 4) -> RetrievalResult:
-        """Embed ``query``, fetch the top-k chunks, and return context.
+    def retrieve(
+        self,
+        query: str,
+        k: int = 4,
+    ) -> RetrievalResult:
+        """Embed query, search FAISS, and return matching context."""
 
-        Sources are de-duplicated relative file paths of the matched docs.
-        """
         embed_started = time.perf_counter()
+
         query_vector = self.embed_query(query)
-        embed_ms = (time.perf_counter() - embed_started) * 1000
+
+        embed_ms = (
+            time.perf_counter() - embed_started
+        ) * 1000
 
         retrieve_started = time.perf_counter()
-        docs = self.vectorstore.similarity_search_by_vector(query_vector, k=k)
-        retrieve_ms = (time.perf_counter() - retrieve_started) * 1000
 
-        context = "\n\n".join(doc.page_content for doc in docs)
+        docs = self.vectorstore.similarity_search_by_vector(
+            query_vector,
+            k=k,
+        )
+
+        retrieve_ms = (
+            time.perf_counter() - retrieve_started
+        ) * 1000
+
+        context = "\n\n".join(
+            doc.page_content
+            for doc in docs
+        )
+
         sources = sorted(
             {
-                str(doc.metadata.get("source", "knowledge")).replace("\\", "/")
+                str(
+                    doc.metadata.get(
+                        "source",
+                        "knowledge",
+                    )
+                ).replace("\\", "/")
                 for doc in docs
             }
         )
+
         return RetrievalResult(
             context=context,
             sources=sources,
