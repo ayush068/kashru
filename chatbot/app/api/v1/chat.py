@@ -1,10 +1,14 @@
 """API v1 chat routes: thin handlers over the ChatService pipeline."""
 
+import logging
+
 from fastapi import APIRouter, HTTPException
 
 from app.models.schemas import ChatRequest, ChatResponse
 from app.services.llm_service import ChatService
 from app.core.config import get_settings
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/v1", tags=["chat"])
 
@@ -21,19 +25,21 @@ def chat(payload: ChatRequest) -> ChatResponse:
     """Answer a visitor message through the RAG + LLM pipeline."""
 
     try:
-        # Create the service inside the protected block so that
-        # FAISS / embeddings initialization errors are caught.
         service = ChatService(get_settings())
 
         result = service.answer(payload.message)
 
     except FileNotFoundError as exc:
+        logger.exception("Chatbot file/index error: %s", exc)
+
         raise HTTPException(
             status_code=503,
             detail=str(exc),
         ) from exc
 
     except Exception as exc:
+        logger.exception("Chat request failed: %s", exc)
+
         raise HTTPException(
             status_code=502,
             detail=(
