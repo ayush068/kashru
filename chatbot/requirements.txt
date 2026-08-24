@@ -1,0 +1,13 @@
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+pydantic-settings==2.10.1
+langchain==0.3.27
+langchain-community==0.3.27
+langchain-core==0.3.86
+langchain-groq==0.3.7
+langchain-google-genai==2.1.9
+langchain-huggingface==0.3.1
+langchain-text-splitters==0.3.11
+faiss-cpu==1.12.0
+sentence-transformers==5.1.0
+huggingface-hub==0.36.0

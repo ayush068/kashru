@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kashru Chat Widget Demo</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #07111f;
+        color: #eef6ff;
+        font-family: Inter, system-ui, sans-serif;
+        display: grid;
+        place-items: center;
+      }
+      main {
+        width: min(860px, calc(100vw - 40px));
+      }
+      h1 {
+        font-size: clamp(34px, 6vw, 70px);
+        line-height: 1;
+        margin: 0 0 14px;
+      }
+      p {
+        color: #a9bed4;
+        font-size: 18px;
+        line-height: 1.6;
+        max-width: 640px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Kashru Technologies</h1>
+      <p>This page is only for local widget testing. Open the chat bubble in the bottom-right corner.</p>
+    </main>
+    <script src="./kashru-chat-widget.js" data-api-url="http://localhost:8000/api/v1/chat"></script>
+  </body>
+</html>
