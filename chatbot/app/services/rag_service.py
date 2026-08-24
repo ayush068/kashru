@@ -30,11 +30,11 @@ class RetrievalResult:
 
 
 def get_embeddings(settings: Settings) -> GoogleGenerativeAIEmbeddings:
-    """Create Gemini API embeddings.
+    """Create Gemini API embeddings using REST transport.
 
-    The embedding model runs through Google's API instead of loading a
-    local sentence-transformer / PyTorch model. This keeps Render memory
-    usage low.
+    REST transport is used instead of gRPC/grpc_asyncio to avoid
+    event-loop errors when the embedding client is initialized from
+    an AnyIO worker thread on Render.
     """
     if not settings.gemini_api_key:
         raise ValueError("GEMINI_API_KEY is required for embeddings")
@@ -42,6 +42,7 @@ def get_embeddings(settings: Settings) -> GoogleGenerativeAIEmbeddings:
     return GoogleGenerativeAIEmbeddings(
         model=settings.embedding_model_name,
         google_api_key=settings.gemini_api_key,
+        transport="rest",
     )
 
 
