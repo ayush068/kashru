@@ -27,10 +27,10 @@ class Settings(BaseSettings):
 
     # Gemini API embeddings.
     # This avoids loading sentence-transformers / torch locally.
-    embedding_model_name: str = "gemini-embedding-001"              
+    embedding_model_name: str = "gemini-embedding-001"
 
-    knowledge_dir: Path = Path("chatbot/knowledge")
-    faiss_index_dir: Path = Path("chatbot/storage/faiss_index") 
+    knowledge_dir: Path = Path("knowledge")
+    faiss_index_dir: Path = Path("storage/faiss_index") 
 
     # Comma-separated list; browsers send Origin "null" for pages opened
     # directly via file://, 5500 is the common Live Server dev port.
