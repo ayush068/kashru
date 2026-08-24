@@ -1,7 +1,4 @@
-"""FastAPI application factory for the Kashru chatbot API.
-
-Run locally with: ``uvicorn app.main:app --reload``
-"""
+"""FastAPI application factory for the Kashru chatbot API."""
 
 from contextlib import asynccontextmanager
 import logging
@@ -18,20 +15,14 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    """Keep startup lightweight for Render.
-
-    Heavy embedding and FAISS initialization is intentionally not performed
-    during application startup. The chatbot service will be initialized
-    lazily when the first chat request arrives.
-    """
+    """Keep startup lightweight so Render can detect the HTTP port quickly."""
     logger.info("Kashru Chatbot API starting...")
     yield
     logger.info("Kashru Chatbot API shutting down...")
 
 
 def create_app() -> FastAPI:
-    """Build the configured FastAPI application."""
-
+    """Build the configured FastAPI app."""
     setup_logging()
     settings = get_settings()
 
