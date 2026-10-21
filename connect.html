@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Connect With Us | Kashru Technologies</title>
-    <meta name="description" content="Connect with Kashru Technologies on social media. Explore our website, services, projects and software solutions.">
+    <meta name="description" content="Connect with Kashru Technologies on Instagram, YouTube, Facebook and WhatsApp. Explore our software services and projects.">
     <meta name="theme-color" content="#0f172a">
 
     <link rel="canonical" href="https://kashru.san-vad.com/connect.html">
     <link rel="icon" href="assets/favicon.png" type="image/png">
+
+    <!-- Font Awesome Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        referrerpolicy="no-referrer"
+    >
 
     <style>
         * {
@@ -20,14 +26,16 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             min-height: 100vh;
             padding: 24px 16px;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #fff;
-            background: radial-gradient(circle at top, #1e293b, #0f172a 75%);
+            background:
+                radial-gradient(circle at top, #1e3a5f 0%, transparent 45%),
+                linear-gradient(135deg, #020617, #0f172a 60%, #111827);
         }
 
         .card {
@@ -35,30 +43,36 @@
             max-width: 460px;
             padding: 32px 24px;
             text-align: center;
-            border: 1px solid #334155;
+            border: 1px solid rgba(148, 163, 184, 0.25);
             border-radius: 24px;
-            background: rgba(30, 41, 59, 0.85);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
+            background: rgba(15, 23, 42, 0.88);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(14px);
         }
 
         .logo {
-            width: 76px;
-            height: 76px;
-            object-fit: cover;
+            width: 82px;
+            height: 82px;
+            object-fit: contain;
             border-radius: 20px;
             margin-bottom: 16px;
+            background: #fff;
+            padding: 4px;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
         }
 
         h1 {
-            font-size: 25px;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.6px;
             margin-bottom: 10px;
         }
 
         .subtitle {
             color: #cbd5e1;
             font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 24px;
+            line-height: 1.8;
+            margin-bottom: 26px;
         }
 
         .links {
@@ -72,33 +86,55 @@
             align-items: center;
             gap: 14px;
             padding: 15px 16px;
-            border: 1px solid #475569;
-            border-radius: 13px;
-            background: #1e293b;
-            color: #fff;
+            border: 1px solid #334155;
+            border-radius: 14px;
+            background: rgba(30, 41, 59, 0.85);
+            color: #f8fafc;
             text-decoration: none;
             font-size: 15px;
             font-weight: 600;
-            transition: .2s;
+            text-align: left;
+            transition: background 0.2s ease,
+                        border-color 0.2s ease,
+                        transform 0.2s ease;
         }
 
         .link:hover {
             background: #334155;
+            border-color: #64748b;
             transform: translateY(-2px);
         }
 
-        .emoji {
-            width: 28px;
-            font-size: 21px;
+        .social-icon {
+            width: 30px;
+            min-width: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
         }
 
+        .website-icon { color: #38bdf8; }
+        .instagram-icon { color: #E4405F; }
+        .youtube-icon { color: #FF0033; }
+        .facebook-icon { color: #1877F2; }
+        .whatsapp-icon { color: #25D366; }
+        .clutch-icon { color: #FF6B35; }
+        .project-icon { color: #A78BFA; }
+        .email-icon { color: #FBBF24; }
+
         .whatsapp {
-            background: #166534;
+            background: rgba(22, 101, 52, 0.4);
+            border-color: rgba(34, 197, 94, 0.6);
+        }
+
+        .whatsapp:hover {
+            background: rgba(22, 101, 52, 0.7);
             border-color: #22c55e;
         }
 
         .share {
-            margin-top: 18px;
+            margin-top: 20px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
@@ -106,35 +142,92 @@
 
         .share a,
         .share button {
-            padding: 13px 8px;
+            min-height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 8px;
             border: 0;
-            border-radius: 10px;
+            border-radius: 11px;
             text-decoration: none;
+            font-family: inherit;
             font-size: 13px;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .share a:hover,
+        .share button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
         }
 
         .share-whatsapp {
-            background: #25d366;
+            background: #25D366;
             color: #052e16;
         }
 
         .share-copy {
-            background: #475569;
+            background: #334155;
             color: #fff;
         }
 
+        .share-copy i {
+            color: #93c5fd;
+        }
+
         .footer {
-            margin-top: 24px;
+            margin-top: 26px;
             color: #94a3b8;
             font-size: 12px;
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
         .footer a {
-            color: #93c5fd;
+            color: #7dd3fc;
             text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .status {
+            min-height: 18px;
+            margin-top: 10px;
+            color: #86efac;
+            font-size: 12px;
+        }
+
+        @media (max-width: 380px) {
+            .card {
+                padding: 26px 16px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+
+            .link {
+                padding: 14px 12px;
+                font-size: 14px;
+            }
+
+            .share a,
+            .share button {
+                font-size: 12px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
@@ -146,106 +239,166 @@
             class="logo"
             src="assets/favicon-180.png"
             alt="Kashru Technologies logo"
+            onerror="this.onerror=null;this.src='assets/favicon.png';"
         >
 
         <h1>Kashru Technologies</h1>
 
         <p class="subtitle">
             Turning Ideas Into Technology 🚀<br>
-            Websites, mobile apps and custom software solutions.
-            Connect with us across our platforms.
+            Websites, mobile apps and custom software solutions.<br>
+            <strong>Let's build something amazing together.</strong>
         </p>
 
         <div class="links">
 
+            <!-- Official Website -->
             <a class="link" href="index.html">
-                <span class="emoji">🌐</span>
+                <span class="social-icon website-icon">
+                    <i class="fa-solid fa-globe"></i>
+                </span>
                 <span>Official Website</span>
             </a>
 
+            <!-- Instagram -->
             <a class="link"
                href="https://www.instagram.com/kashrutechnologies/"
-               target="_blank" rel="noopener">
-                <span class="emoji">📸</span>
+               target="_blank"
+               rel="noopener noreferrer">
+                <span class="social-icon instagram-icon">
+                    <i class="fa-brands fa-instagram"></i>
+                </span>
                 <span>Instagram</span>
             </a>
 
+            <!-- YouTube -->
             <a class="link"
                href="https://www.youtube.com/@kashrutechnologies"
-               target="_blank" rel="noopener">
-                <span class="emoji">▶️</span>
+               target="_blank"
+               rel="noopener noreferrer">
+                <span class="social-icon youtube-icon">
+                    <i class="fa-brands fa-youtube"></i>
+                </span>
                 <span>YouTube Channel</span>
             </a>
 
+            <!-- Facebook -->
             <a class="link"
                href="https://www.facebook.com/61582572164547"
-               target="_blank" rel="noopener">
-                <span class="emoji">📘</span>
+               target="_blank"
+               rel="noopener noreferrer">
+                <span class="social-icon facebook-icon">
+                    <i class="fa-brands fa-facebook"></i>
+                </span>
                 <span>Facebook Page</span>
             </a>
 
+            <!-- Clutch -->
             <a class="link"
                href="https://clutch.co/profile/kashru-technologies"
-               target="_blank" rel="noopener">
-                <span class="emoji">⭐</span>
+               target="_blank"
+               rel="noopener noreferrer">
+                <span class="social-icon clutch-icon">
+                    <i class="fa-solid fa-star"></i>
+                </span>
                 <span>Clutch Company Profile</span>
             </a>
 
+            <!-- Projects -->
             <a class="link" href="contact.html">
-                <span class="emoji">💼</span>
+                <span class="social-icon project-icon">
+                    <i class="fa-solid fa-briefcase"></i>
+                </span>
                 <span>Discuss Your Project</span>
             </a>
 
+            <!-- Email -->
             <a class="link"
                href="mailto:hello@kashrutechnologies.com">
-                <span class="emoji">✉️</span>
+                <span class="social-icon email-icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </span>
                 <span>Email Us</span>
             </a>
 
+            <!-- WhatsApp -->
             <a class="link whatsapp"
                href="https://wa.me/919806604871?text=Hi%20Kashru%20Technologies%2C%20I%20want%20to%20discuss%20a%20project."
-               target="_blank" rel="noopener">
-                <span class="emoji">💬</span>
+               target="_blank"
+               rel="noopener noreferrer">
+                <span class="social-icon whatsapp-icon">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </span>
                 <span>Chat on WhatsApp</span>
             </a>
 
         </div>
 
+        <!-- Sharing Buttons -->
         <div class="share">
 
             <a class="share-whatsapp"
                href="https://wa.me/?text=Connect%20with%20Kashru%20Technologies%3A%20https%3A%2F%2Fkashru.san-vad.com%2Fconnect.html"
-               target="_blank" rel="noopener">
-                💬 Share on WhatsApp
+               target="_blank"
+               rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i>
+                Share Page
             </a>
 
-            <button class="share-copy" onclick="copyLink()">
-                🔗 Copy Page Link
+            <button class="share-copy"
+                    type="button"
+                    onclick="copyLink()">
+                <i class="fa-solid fa-link"></i>
+                Copy Link
             </button>
 
         </div>
 
+        <p class="status" id="copyStatus" role="status" aria-live="polite"></p>
+
         <p class="footer">
-            © 2026 Kashru Technologies<br>
+            © <span id="currentYear">2026</span> Kashru Technologies<br>
             Digital solutions for modern business.<br>
             <a href="contact.html">Contact Our Team</a>
+            &nbsp;·&nbsp;
+            <a href="index.html">Visit Website</a>
         </p>
 
     </main>
 
     <script>
-        function copyLink() {
-            const url =
-                "https://kashru.san-vad.com/connect.html";
+        const pageUrl =
+            "https://kashru.san-vad.com/connect.html";
 
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(url)
-                    .then(() => alert("Page link copied!"))
-                    .catch(() => prompt("Copy this link:", url));
-            } else {
-                prompt("Copy this link:", url);
+        async function copyLink() {
+            const status = document.getElementById("copyStatus");
+
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(pageUrl);
+                    status.textContent = "Page link copied successfully!";
+                } else {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = pageUrl;
+                    textArea.style.position = "fixed";
+                    textArea.style.opacity = "0";
+                    document.body.appendChild(textArea);
+                    textArea.select();
+
+                    const copied = document.execCommand("copy");
+                    textArea.remove();
+
+                    status.textContent = copied
+                        ? "Page link copied successfully!"
+                        : "Copy this link: " + pageUrl;
+                }
+            } catch (error) {
+                status.textContent = "Copy this link: " + pageUrl;
             }
         }
+
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
     </script>
 </body>
 </html>
