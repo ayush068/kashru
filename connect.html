@@ -5,136 +5,284 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Connect With Us | Kashru Technologies</title>
-    <meta name="description" content="Connect with Kashru Technologies on Instagram, YouTube, Facebook and WhatsApp. Explore our software services and projects.">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="Connect with Kashru Technologies on Instagram, YouTube, Facebook, and WhatsApp. Explore our software services and innovative tech solutions.">
+    <meta name="theme-color" content="#030712">
 
     <link rel="canonical" href="https://kashru.san-vad.com/connect.html">
     <link rel="icon" href="assets/favicon.png" type="image/png">
 
+    <!-- Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
     <!-- Font Awesome Icons -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        referrerpolicy="no-referrer"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" referrerpolicy="no-referrer">
 
     <style>
+        :root {
+            --bg-dark: #030712;
+            --card-bg: rgba(15, 23, 42, 0.72);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --item-bg: rgba(30, 41, 59, 0.45);
+            --item-border: rgba(255, 255, 255, 0.06);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --primary-accent: #38bdf8;
+            --primary-gradient: linear-gradient(135deg, #38bdf8, #818cf8);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             min-height: 100vh;
-            padding: 24px 16px;
+            padding: 40px 16px;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
-            background:
-                radial-gradient(circle at top, #1e3a5f 0%, transparent 45%),
-                linear-gradient(135deg, #020617, #0f172a 60%, #111827);
+            color: var(--text-primary);
+            background-color: var(--bg-dark);
+            position: relative;
+            overflow-x: hidden;
         }
 
+        /* Ambient Glow Spheres */
+        .ambient-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+        .glow-1 {
+            width: 380px;
+            height: 380px;
+            background: #2563eb;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .glow-2 {
+            width: 280px;
+            height: 280px;
+            background: #06b6d4;
+            bottom: -50px;
+            right: 10%;
+        }
+
+        /* Glassmorphism Card Container */
         .card {
+            position: relative;
+            z-index: 1;
             width: 100%;
             max-width: 460px;
-            padding: 32px 24px;
+            padding: 38px 24px 28px;
             text-align: center;
-            border: 1px solid rgba(148, 163, 184, 0.25);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            background: var(--card-bg);
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+                0 25px 60px -12px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Live Status Pill */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 14px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            border-radius: 999px;
+            color: #4ade80;
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            margin-bottom: 20px;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .pulse-dot::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background-color: #22c55e;
+            opacity: 0.75;
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.9); opacity: 0.8; }
+            70% { transform: scale(2.4); opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Logo Styling */
+        .logo-wrap {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .logo-glow {
+            position: absolute;
+            inset: 0;
+            background: var(--primary-gradient);
             border-radius: 24px;
-            background: rgba(15, 23, 42, 0.88);
-            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(14px);
+            filter: blur(14px);
+            opacity: 0.35;
+            transform: scale(0.95);
         }
 
         .logo {
-            width: 82px;
-            height: 82px;
+            position: relative;
+            width: 86px;
+            height: 86px;
             object-fit: contain;
-            border-radius: 20px;
-            margin-bottom: 16px;
-            background: #fff;
-            padding: 4px;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+            border-radius: 22px;
+            background: #ffffff;
+            padding: 6px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.15);
         }
 
         h1 {
-            font-size: 26px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 25px;
             font-weight: 800;
             letter-spacing: -0.6px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            background: linear-gradient(180deg, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
-            color: #cbd5e1;
-            font-size: 14px;
-            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 13.5px;
+            line-height: 1.6;
             margin-bottom: 26px;
         }
 
+        .subtitle strong {
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+
+        /* Links Stack */
         .links {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 11px;
         }
 
         .link {
+            position: relative;
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 15px 16px;
-            border: 1px solid #334155;
-            border-radius: 14px;
-            background: rgba(30, 41, 59, 0.85);
-            color: #f8fafc;
+            justify-content: space-between;
+            padding: 13px 18px;
+            border: 1px solid var(--item-border);
+            border-radius: 16px;
+            background: var(--item-bg);
+            color: var(--text-primary);
             text-decoration: none;
-            font-size: 15px;
             font-weight: 600;
-            text-align: left;
-            transition: background 0.2s ease,
-                        border-color 0.2s ease,
-                        transform 0.2s ease;
+            font-size: 14.5px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
         }
 
-        .link:hover {
-            background: #334155;
-            border-color: #64748b;
-            transform: translateY(-2px);
+        .link-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .social-icon {
-            width: 30px;
-            min-width: 30px;
-            display: inline-flex;
+        /* Icon Badges */
+        .icon-badge {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 23px;
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: transform 0.25s ease, background-color 0.25s ease;
         }
 
+        .link:hover .icon-badge {
+            transform: scale(1.08);
+        }
+
+        .arrow-icon {
+            font-size: 12px;
+            color: #64748b;
+            transition: transform 0.25s ease, color 0.25s ease;
+        }
+
+        .link:hover .arrow-icon {
+            color: #f8fafc;
+            transform: translateX(4px);
+        }
+
+        /* Individual Hover Brand Themes */
+        .link-website:hover { border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.12); }
+        .link-instagram:hover { border-color: rgba(228, 64, 95, 0.4); background: rgba(228, 64, 95, 0.12); }
+        .link-youtube:hover { border-color: rgba(255, 0, 51, 0.4); background: rgba(255, 0, 51, 0.12); }
+        .link-facebook:hover { border-color: rgba(24, 119, 242, 0.4); background: rgba(24, 119, 242, 0.12); }
+        .link-clutch:hover { border-color: rgba(255, 107, 53, 0.4); background: rgba(255, 107, 53, 0.12); }
+        .link-project:hover { border-color: rgba(167, 139, 250, 0.4); background: rgba(167, 139, 250, 0.12); }
+        .link-email:hover { border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.12); }
+
+        .link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Brand Colors */
         .website-icon { color: #38bdf8; }
-        .instagram-icon { color: #E4405F; }
-        .youtube-icon { color: #FF0033; }
-        .facebook-icon { color: #1877F2; }
-        .whatsapp-icon { color: #25D366; }
-        .clutch-icon { color: #FF6B35; }
-        .project-icon { color: #A78BFA; }
-        .email-icon { color: #FBBF24; }
+        .instagram-icon { color: #f43f5e; }
+        .youtube-icon { color: #ef4444; }
+        .facebook-icon { color: #3b82f6; }
+        .clutch-icon { color: #f97316; }
+        .project-icon { color: #a855f7; }
+        .email-icon { color: #eab308; }
+        .whatsapp-icon { color: #22c55e; }
 
-        .whatsapp {
-            background: rgba(22, 101, 52, 0.4);
-            border-color: rgba(34, 197, 94, 0.6);
+        /* Highlighted WhatsApp Button */
+        .link-whatsapp {
+            background: linear-gradient(135deg, rgba(22, 101, 52, 0.45), rgba(21, 128, 61, 0.25));
+            border-color: rgba(34, 197, 94, 0.35);
+        }
+        .link-whatsapp:hover {
+            background: linear-gradient(135deg, rgba(22, 101, 52, 0.65), rgba(34, 197, 94, 0.35));
+            border-color: rgba(74, 222, 128, 0.6);
         }
 
-        .whatsapp:hover {
-            background: rgba(22, 101, 52, 0.7);
-            border-color: #22c55e;
-        }
-
+        /* Share Area */
         .share {
-            margin-top: 20px;
+            margin-top: 22px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
@@ -142,201 +290,243 @@
 
         .share a,
         .share button {
-            min-height: 46px;
+            min-height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 12px 8px;
-            border: 0;
-            border-radius: 11px;
+            padding: 10px 14px;
+            border-radius: 13px;
             text-decoration: none;
             font-family: inherit;
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .share a:hover,
-        .share button:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
+            transition: all 0.2s ease;
         }
 
         .share-whatsapp {
-            background: #25D366;
-            color: #052e16;
+            background: #22c55e;
+            color: #022c22;
+            border: none;
+        }
+        .share-whatsapp:hover {
+            background: #16a34a;
+            transform: translateY(-2px);
         }
 
         .share-copy {
-            background: #334155;
-            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            border: 1px solid var(--card-border);
+        }
+        .share-copy:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
-        .share-copy i {
-            color: #93c5fd;
+        /* Toast Feedback */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+            pointer-events: none;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
+        /* Footer */
         .footer {
-            margin-top: 26px;
-            color: #94a3b8;
+            margin-top: 28px;
+            color: #64748b;
             font-size: 12px;
-            line-height: 1.9;
+            line-height: 1.8;
         }
 
         .footer a {
-            color: #7dd3fc;
+            color: #94a3b8;
             text-decoration: none;
+            transition: color 0.2s ease;
         }
 
         .footer a:hover {
-            text-decoration: underline;
+            color: #38bdf8;
         }
 
-        .status {
-            min-height: 18px;
-            margin-top: 10px;
-            color: #86efac;
-            font-size: 12px;
-        }
-
-        @media (max-width: 380px) {
-            .card {
-                padding: 26px 16px;
-            }
-
-            h1 {
-                font-size: 23px;
-            }
-
-            .link {
-                padding: 14px 12px;
-                font-size: 14px;
-            }
-
-            .share a,
-            .share button {
-                font-size: 12px;
-            }
+        @media (max-width: 400px) {
+            .card { padding: 30px 16px 22px; }
+            h1 { font-size: 22px; }
+            .link { padding: 12px 14px; font-size: 13.5px; }
+            .icon-badge { width: 34px; height: 34px; font-size: 16px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 transition: none !important;
-                scroll-behavior: auto !important;
+                animation: none !important;
             }
         }
     </style>
 </head>
 
 <body>
-    <main class="card">
 
-        <img
-            class="logo"
-            src="assets/favicon-180.png"
-            alt="Kashru Technologies logo"
-            onerror="this.onerror=null;this.src='assets/favicon.png';"
-        >
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <main class="card">
+        
+        <!-- Live Status -->
+        <div class="status-badge">
+            <span class="pulse-dot"></span>
+            Available for New Projects
+        </div>
+
+        <!-- Logo -->
+        <div class="logo-wrap">
+            <div class="logo-glow"></div>
+            <img
+                class="logo"
+                src="assets/favicon-180.png"
+                alt="Kashru Technologies logo"
+                onerror="this.onerror=null;this.src='assets/favicon.png';"
+            >
+        </div>
 
         <h1>Kashru Technologies</h1>
 
         <p class="subtitle">
             Turning Ideas Into Technology 🚀<br>
-            Websites, mobile apps and custom software solutions.<br>
+            Websites, Mobile Apps & Custom Software Solutions.<br>
             <strong>Let's build something amazing together.</strong>
         </p>
 
         <div class="links">
 
             <!-- Official Website -->
-            <a class="link" href="index.html">
-                <span class="social-icon website-icon">
-                    <i class="fa-solid fa-globe"></i>
-                </span>
-                <span>Official Website</span>
+            <a class="link link-website" href="index.html">
+                <div class="link-content">
+                    <span class="icon-badge website-icon">
+                        <i class="fa-solid fa-globe"></i>
+                    </span>
+                    <span>Official Website</span>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
             </a>
 
             <!-- Instagram -->
-            <a class="link"
+            <a class="link link-instagram"
                href="https://www.instagram.com/kashrutechnologies/"
                target="_blank"
                rel="noopener noreferrer">
-                <span class="social-icon instagram-icon">
-                    <i class="fa-brands fa-instagram"></i>
-                </span>
-                <span>Instagram</span>
+                <div class="link-content">
+                    <span class="icon-badge instagram-icon">
+                        <i class="fa-brands fa-instagram"></i>
+                    </span>
+                    <span>Instagram</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
             </a>
 
             <!-- YouTube -->
-            <a class="link"
+            <a class="link link-youtube"
                href="https://www.youtube.com/@kashrutechnologies"
                target="_blank"
                rel="noopener noreferrer">
-                <span class="social-icon youtube-icon">
-                    <i class="fa-brands fa-youtube"></i>
-                </span>
-                <span>YouTube Channel</span>
+                <div class="link-content">
+                    <span class="icon-badge youtube-icon">
+                        <i class="fa-brands fa-youtube"></i>
+                    </span>
+                    <span>YouTube Channel</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
             </a>
 
             <!-- Facebook -->
-            <a class="link"
+            <a class="link link-facebook"
                href="https://www.facebook.com/61582572164547"
                target="_blank"
                rel="noopener noreferrer">
-                <span class="social-icon facebook-icon">
-                    <i class="fa-brands fa-facebook"></i>
-                </span>
-                <span>Facebook Page</span>
+                <div class="link-content">
+                    <span class="icon-badge facebook-icon">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </span>
+                    <span>Facebook Page</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
             </a>
 
-            <!-- Clutch -->
-            <a class="link"
+            <!-- Clutch Profile -->
+            <a class="link link-clutch"
                href="https://clutch.co/profile/kashru-technologies"
                target="_blank"
                rel="noopener noreferrer">
-                <span class="social-icon clutch-icon">
-                    <i class="fa-solid fa-star"></i>
-                </span>
-                <span>Clutch Company Profile</span>
+                <div class="link-content">
+                    <span class="icon-badge clutch-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+                    <span>Clutch Profile</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
             </a>
 
             <!-- Projects -->
-            <a class="link" href="contact.html">
-                <span class="social-icon project-icon">
-                    <i class="fa-solid fa-briefcase"></i>
-                </span>
-                <span>Discuss Your Project</span>
+            <a class="link link-project" href="contact.html">
+                <div class="link-content">
+                    <span class="icon-badge project-icon">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </span>
+                    <span>Discuss Your Project</span>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
             </a>
 
             <!-- Email -->
-            <a class="link"
-               href="mailto:hello@kashrutechnologies.com">
-                <span class="social-icon email-icon">
-                    <i class="fa-solid fa-envelope"></i>
-                </span>
-                <span>Email Us</span>
+            <a class="link link-email" href="mailto:hello@kashrutechnologies.com">
+                <div class="link-content">
+                    <span class="icon-badge email-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </span>
+                    <span>Email Us</span>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
             </a>
 
-            <!-- WhatsApp -->
-            <a class="link whatsapp"
+            <!-- WhatsApp Direct -->
+            <a class="link link-whatsapp"
                href="https://wa.me/919806604871?text=Hi%20Kashru%20Technologies%2C%20I%20want%20to%20discuss%20a%20project."
                target="_blank"
                rel="noopener noreferrer">
-                <span class="social-icon whatsapp-icon">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </span>
-                <span>Chat on WhatsApp</span>
+                <div class="link-content">
+                    <span class="icon-badge whatsapp-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </span>
+                    <span>Chat on WhatsApp</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
             </a>
 
         </div>
 
-        <!-- Sharing Buttons -->
+        <!-- Sharing Area -->
         <div class="share">
-
             <a class="share-whatsapp"
                href="https://wa.me/?text=Connect%20with%20Kashru%20Technologies%3A%20https%3A%2F%2Fkashru.san-vad.com%2Fconnect.html"
                target="_blank"
@@ -345,38 +535,37 @@
                 Share Page
             </a>
 
-            <button class="share-copy"
-                    type="button"
-                    onclick="copyLink()">
+            <button class="share-copy" type="button" onclick="copyLink()">
                 <i class="fa-solid fa-link"></i>
                 Copy Link
             </button>
-
         </div>
 
-        <p class="status" id="copyStatus" role="status" aria-live="polite"></p>
-
+        <!-- Footer -->
         <p class="footer">
             © <span id="currentYear">2026</span> Kashru Technologies<br>
-            Digital solutions for modern business.<br>
-            <a href="contact.html">Contact Our Team</a>
+            Engineering scalable digital products.<br>
+            <a href="contact.html">Contact Us</a>
             &nbsp;·&nbsp;
-            <a href="index.html">Visit Website</a>
+            <a href="index.html">Main Website</a>
         </p>
 
     </main>
 
+    <!-- Floating Copy Toast -->
+    <div id="toast" class="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>Link copied to clipboard!</span>
+    </div>
+
     <script>
-        const pageUrl =
-            "https://kashru.san-vad.com/connect.html";
+        const pageUrl = "https://kashru.san-vad.com/connect.html";
 
         async function copyLink() {
-            const status = document.getElementById("copyStatus");
-
             try {
                 if (navigator.clipboard && window.isSecureContext) {
                     await navigator.clipboard.writeText(pageUrl);
-                    status.textContent = "Page link copied successfully!";
+                    showToast("Link copied to clipboard!");
                 } else {
                     const textArea = document.createElement("textarea");
                     textArea.value = pageUrl;
@@ -384,21 +573,25 @@
                     textArea.style.opacity = "0";
                     document.body.appendChild(textArea);
                     textArea.select();
-
-                    const copied = document.execCommand("copy");
+                    document.execCommand("copy");
                     textArea.remove();
-
-                    status.textContent = copied
-                        ? "Page link copied successfully!"
-                        : "Copy this link: " + pageUrl;
+                    showToast("Link copied to clipboard!");
                 }
-            } catch (error) {
-                status.textContent = "Copy this link: " + pageUrl;
+            } catch (err) {
+                showToast("URL: " + pageUrl);
             }
         }
 
-        document.getElementById("currentYear").textContent =
-            new Date().getFullYear();
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            toast.querySelector("span").textContent = msg;
+            toast.classList.add("show");
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2500);
+        }
+
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
